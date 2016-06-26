@@ -1,0 +1,16 @@
+package ca.horatiu.decanting;
+
+/**
+ * Created by Horatiu on 26/06/2016.
+ */
+public class SolutionSolverTest {
+
+
+    public SolutionSolverTest(){
+        
+    }
+
+    public static void main (String [] args){
+
+    }
+}
