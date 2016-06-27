@@ -38,12 +38,12 @@ public class Jug {
         /* This case if for an overflow.
             Ex: 5ml poured into a 2ml bottle. Decrease the pouring one by the difference.
          */
-        if (other.getMaxCapacity() + other.getVolume() < volume){
+        if (other.getMaxCapacity() <  other.getVolume() + volume){
             volume -= other.getMaxCapacity() - other.getVolume();
             other.setVolume(other.getMaxCapacity());
         }
         else{
-            other.setVolume(other.getVolume() + volume);
+            other.setVolume(other.getVolume() + volume); //you pour from yours to the other one!
             volume = 0;
         }
     }
