@@ -5,18 +5,18 @@ import java.util.*;
  * Created by Horatiu on 26/06/2016.
  */
 public class SolutionSolverTest { //implement JUnit so it's legit? :-)
-  Jug [] arr;
-  int target;
-  HashSet <String> dp = new HashSet<String>(); //store if this was already considered in Q
+  private Jug [] arr;
+  private int target;
+  private HashSet <String> dp = new HashSet<String>(); //store if this was already considered in Q
   
-  public String generateCache(Jug [] array){
+  private String generateCache(Jug [] array){
     StringBuilder cache = new StringBuilder(); //only noobs do += with String :-) 
     for(int x = 0; x < array.length; x++)
       cache.append(array[x].getVolume() + "|");
     return cache.toString();
   }
   
-  public int solve(){
+  private int solve(){
     //ok now time for magic :-)
     dp.add(generateCache(arr));
     ArrayDeque<State> Q = new ArrayDeque<State>();
@@ -104,11 +104,11 @@ public class SolutionSolverTest { //implement JUnit so it's legit? :-)
     }
     
     public String toString(){
-      String ans = "";
+      StringBuilder ans = new StringBuilder();
       for(int x = 0; x < arr.length; x++){
-        ans += arr[x].getVolume() + " "; //don't use += 
+        ans.append(arr[x].getVolume() + " "); //don't use +=
       }
-      return ans;
+      return ans.toString();
     }
   }
   
@@ -116,8 +116,9 @@ public class SolutionSolverTest { //implement JUnit so it's legit? :-)
   public SolutionSolverTest(){
     arr = new Jug[2];
     arr[0] = new Jug(0, 11); //the 0 & 1 don't actually matter!
-    arr[1] = new Jug(1, 6);
+    arr[1] = new Jug(1, 9);
     target = 8;
+    
     System.out.println("Minimum number of moves: " + solve());
   }
   
