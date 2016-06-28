@@ -55,6 +55,22 @@ public class GameRenderer extends View {
         }
     }
 
+    public void gesture(int x, int y, int dx, int dy){
+        //calculate the real jug
+        int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
+        Log.d("Jug", jug + " " + dy + " =change");
+        if (jug >= 0 && jug < numJugs && y > getHeight()/4){
+            if (dy > 0){ //swipe up!
+                scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
+            }
+            else{
+                scenario.jugs[jug].setVolume(0);
+            }
+        }
+        Log.d("Capacity:", capacity[jug] + " vs " + scenario.jugs[jug].getVolume());
+        invalidate();
+    }
+
     private Runnable r = new Runnable() {
         @Override
         public void run() {
@@ -75,6 +91,7 @@ public class GameRenderer extends View {
     public void updateCapacities(){
         for(int x = 0; x < scenario.jugs.length; x++){
             capacity[x] = (int) (((double)scenario.jugs[x].getVolume()/maxCapacity)*((getHeight()*0.5)));
+            Log.d("Updated", capacity[x] + "");
         }
         //Log.d("Height: ", getHeight() + "");
     }
@@ -107,6 +124,7 @@ public class GameRenderer extends View {
             else if (capacity[x] > capacityDrawn[x]){
                 capacityDrawn[x]+=2;
             }
+            Log.d("Capacity drawn: ", "Capacity drawn" + capacityDrawn[x] + "");
         }
         //height = ???
         h.postDelayed(r, FRAME_RATE);
