@@ -90,6 +90,9 @@ public class Game extends Activity implements
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
+        //single tap here...
+        renderer.tapped((int)event.getX());
+
         return true;
     }
 

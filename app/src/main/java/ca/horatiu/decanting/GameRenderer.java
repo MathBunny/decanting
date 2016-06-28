@@ -5,17 +5,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
-
-import java.io.Serializable;
 
 /**
  * Created by Horatiu on 27/06/2016.
@@ -28,11 +22,14 @@ public class GameRenderer extends View {
     Canvas canvas;
     final int GAP = 20;
     private Handler h;
-    private final int FRAME_RATE = 120;
+    private final int FRAME_RATE = 250;
+    private final int SPEED = 1;
     Scenario scenario;
     int maxCapacity;
     int [] capacity;
     int [] capacityDrawn;
+    boolean [] highlighted;
+    boolean hasHighlighted = false;
 
     int radius = 0;
 
@@ -47,6 +44,7 @@ public class GameRenderer extends View {
         this.scenario = scenario;
 
         capacity = new int[numJugs];
+        highlighted = new boolean[numJugs];
         capacityDrawn = new int[numJugs];
 
         for(int x = 0; x  < scenario.jugs.length; x++){
@@ -55,10 +53,54 @@ public class GameRenderer extends View {
         }
     }
 
+    public void tapped(int x){
+        int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
+        Log.d("Tap", "Tapped! Jug: " + jug + " ");
+        if (hasHighlighted){
+            if (jug >= 0 && jug < numJugs){
+                if (!highlighted[jug]){
+                    //swap these two :-)
+                    for(int y = 0; y < scenario.jugs.length; y++){
+                        if (jug != y && highlighted[y]){
+                            //swap this one...
+                            scenario.jugs[y].pour(scenario.jugs[jug]); //is this ok?
+                            Log.d("Tap", "Pour from " + x + " to: " + y);
+                            highlighted[y] = false;
+                        }
+                    }
+                }
+                hasHighlighted = false;
+                highlighted[jug] = false;
+            }
+        }
+        else{
+            if (jug >= 0 && jug < numJugs){
+                hasHighlighted = true;
+                highlighted[jug] = true; //highlight now!
+            }
+        }
+        invalidate();
+    }
+
+
+    public void drawHighlights(){
+        int heightStep = height/4;
+        int widthStep = (width/(numJugs+2));
+        drawPaint.setColor(Color.YELLOW);
+
+        drawPaint.setStrokeWidth(10);
+        for(int x = 1; x <= (numJugs+1)*2-1; x++) {
+            int jug = (x-1)/2;
+
+            if (jug < numJugs && jug >= 0 &&  highlighted[jug])
+                canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+        }
+    }
+
     public void gesture(int x, int y, int dx, int dy){
         //calculate the real jug
         int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
-        Log.d("Jug", jug + " " + dy + " =change");
+        //Log.d("Jug", jug + " " + dy + " =change");
         if (jug >= 0 && jug < numJugs && y > getHeight()/4){
             if (dy > 0){ //swipe up!
                 scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
@@ -67,7 +109,7 @@ public class GameRenderer extends View {
                 scenario.jugs[jug].setVolume(0);
             }
         }
-        Log.d("Capacity:", capacity[jug] + " vs " + scenario.jugs[jug].getVolume());
+        //Log.d("Capacity:", capacity[jug] + " vs " + scenario.jugs[jug].getVolume());
         invalidate();
     }
 
@@ -86,6 +128,7 @@ public class GameRenderer extends View {
         drawBackground(canvas);
         this.height = getHeight();
         this.width = getWidth();
+        drawHighlights();
     }
 
     public void updateCapacities(){
@@ -119,14 +162,15 @@ public class GameRenderer extends View {
         }
         for(int x = 0; x < capacity.length; x++){
             if (capacity[x] < capacityDrawn[x]){
-                capacityDrawn[x]-=2;
+                capacityDrawn[x]-=SPEED;
             }
             else if (capacity[x] > capacityDrawn[x]){
-                capacityDrawn[x]+=2;
+                capacityDrawn[x]+=SPEED;
             }
-            Log.d("Capacity drawn: ", "Capacity drawn" + capacityDrawn[x] + "");
+            //Log.d("Capacity drawn: ", "Capacity drawn" + capacityDrawn[x] + "");
         }
         //height = ???
+        drawHighlights();
         h.postDelayed(r, FRAME_RATE);
         invalidate();
 
