@@ -1,9 +1,11 @@
 package ca.horatiu.decanting;
 
+import java.io.Serializable;
+
 /**
  * Created by Horatiu on 25/06/2016.
  */
-public class Jug {
+public class Jug implements Serializable{
     private int col;
     private int maxCapacity;
     private int volume;

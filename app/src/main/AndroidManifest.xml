@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".Highscores" />
         <activity android:name=".About" />
-        <activity android:name=".Game"></activity>
+        <activity android:name=".Game" />
+        <activity android:name=".LevelSelection"></activity>
     </application>
 
 </manifest>

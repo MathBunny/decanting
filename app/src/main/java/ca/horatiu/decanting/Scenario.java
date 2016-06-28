@@ -1,9 +1,11 @@
 package ca.horatiu.decanting;
 
+import java.io.Serializable;
+
 /**
  * Created by Horatiu on 26/06/2016.
  */
-public class Scenario {
+public class Scenario implements Serializable {
     private int jugCount;
     Jug [] jugs;
 

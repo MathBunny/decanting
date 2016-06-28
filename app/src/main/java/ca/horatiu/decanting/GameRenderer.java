@@ -15,6 +15,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import java.io.Serializable;
+
 /**
  * Created by Horatiu on 27/06/2016.
  */
@@ -26,7 +28,7 @@ public class GameRenderer extends View {
     Canvas canvas;
     final int GAP = 20;
     private Handler h;
-    private final int FRAME_RATE = 30;
+    private final int FRAME_RATE = 120;
     Scenario scenario;
     int maxCapacity;
     int [] capacity;
@@ -34,7 +36,7 @@ public class GameRenderer extends View {
 
     int radius = 0;
 
-    public GameRenderer(Context context, int numJugs) {
+    public GameRenderer(Context context, int numJugs, Scenario scenario) {
         super(context);
         drawPaint = new Paint();
         drawPaint.setColor(Color.parseColor("#f0f0f0"));
@@ -42,17 +44,15 @@ public class GameRenderer extends View {
         setOnMeasureCallback();
         this.numJugs = numJugs;
         h = new Handler();
-        scenario = new Scenario(numJugs);
-        for(int x = 0; x < scenario.jugs.length; x++)
-            scenario.jugs[x] = new Jug(x, 10); //10?
+        this.scenario = scenario;
+
+        capacity = new int[numJugs];
+        capacityDrawn = new int[numJugs];
 
         for(int x = 0; x  < scenario.jugs.length; x++){
             if (scenario.jugs[x].getMaxCapacity() > maxCapacity)
                 maxCapacity = scenario.jugs[x].getMaxCapacity();
         }
-        capacity = new int[numJugs];
-        capacityDrawn = new int[numJugs];
-        capacity[0] = 200;
     }
 
     private Runnable r = new Runnable() {
@@ -66,7 +66,17 @@ public class GameRenderer extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
         this.canvas = canvas;
+        updateCapacities();
         drawBackground(canvas);
+        this.height = getHeight();
+        this.width = getWidth();
+    }
+
+    public void updateCapacities(){
+        for(int x = 0; x < scenario.jugs.length; x++){
+            capacity[x] = (int) (((double)scenario.jugs[x].getVolume()/maxCapacity)*((getHeight()*0.5)));
+        }
+        //Log.d("Height: ", getHeight() + "");
     }
 
     public void drawBackground(Canvas canvas){
@@ -75,28 +85,12 @@ public class GameRenderer extends View {
         drawPaint.setColor(Color.parseColor("#9e9e9e"));
 
         drawPaint.setStrokeWidth(10);
-        for(int x = 1; x <= (numJugs+1)*2; x++) {
-            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-            Log.d("Ok", widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0) ? (-5) : (0)) + "");
+        for(int x = 1; x <= (numJugs+1)*2-1; x++) {
+            //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
         }
 
-        drawPaint.setTextSize(250);
-        //draw the + and minus lol
-        /*for(int x = 0; x < numJugs; x++){
-            //compute the x coordinate
-            drawPaint.setColor(Color.BLACK);
-            int xCordMinus = widthStep * (x+1)+(widthStep/6);
-            int yCordMinus = (int)((heightStep * 2.0)/1.4);
-
-            canvas.drawLine(xCordMinus-widthStep/6, yCordMinus, xCordMinus+widthStep/6, yCordMinus, drawPaint);
-
-            //drawPaint.setTypeface(Typeface.create("Arial",Typeface.ITALIC));
-
-           // canvas.drawText("-", xCordMinus, yCordMinus, drawPaint);
-            Log.d("loc", xCordMinus + " " + yCordMinus);
-        }*/
-
-        drawPaint.setColor(Color.parseColor("#03a9f4")); //green
+        drawPaint.setColor(Color.parseColor("#03a9f4")); //blue? lol
         //draw the base value
         for(int x = 1; x <= capacityDrawn.length; x++){
             //draw the rectangle
@@ -108,10 +102,10 @@ public class GameRenderer extends View {
         }
         for(int x = 0; x < capacity.length; x++){
             if (capacity[x] < capacityDrawn[x]){
-                capacityDrawn[x]--;
+                capacityDrawn[x]-=2;
             }
             else if (capacity[x] > capacityDrawn[x]){
-                capacityDrawn[x]++;
+                capacityDrawn[x]+=2;
             }
         }
         //height = ???
