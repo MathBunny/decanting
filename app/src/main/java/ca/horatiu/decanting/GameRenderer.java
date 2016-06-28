@@ -22,7 +22,7 @@ public class GameRenderer extends View {
     Canvas canvas;
     final int GAP = 20;
     private Handler h;
-    private final int FRAME_RATE = 250;
+    private final int FRAME_RATE = 2 << 20;
     private final int SPEED = 1;
     Scenario scenario;
     int maxCapacity;
@@ -30,6 +30,8 @@ public class GameRenderer extends View {
     int [] capacityDrawn;
     boolean [] highlighted;
     boolean hasHighlighted = false;
+    private int moves = 0;
+    private int target;
 
     int radius = 0;
 
@@ -42,6 +44,7 @@ public class GameRenderer extends View {
         this.numJugs = numJugs;
         h = new Handler();
         this.scenario = scenario;
+        this.target = scenario.getTargetCapacity();
 
         capacity = new int[numJugs];
         highlighted = new boolean[numJugs];
@@ -66,6 +69,7 @@ public class GameRenderer extends View {
                             scenario.jugs[y].pour(scenario.jugs[jug]); //is this ok?
                             Log.d("Tap", "Pour from " + x + " to: " + y);
                             highlighted[y] = false;
+                            moves++;
                         }
                     }
                 }
@@ -82,6 +86,19 @@ public class GameRenderer extends View {
         invalidate();
     }
 
+    public void drawText(){
+        drawPaint.setColor(Color.BLUE);
+        drawPaint.setTextSize(64); //1000? lol
+        canvas.drawText("Goal: " + scenario.getTargetCapacity(), 0, 100, drawPaint);
+        canvas.drawText("Moves: " + moves, 0, 200, drawPaint);
+
+        for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
+            canvas.drawText(scenario.jugs[x].getVolume() + "", (width/(numJugs+2)) * (x+1), getHeight()-20, drawPaint); //u should put the current capacity :)
+
+        for(int x = 0; x < scenario.jugs.length; x++)
+            canvas.drawText(scenario.jugs[x].getMaxCapacity() + "", (width/(numJugs+2)) * (x+1), getHeight()/2, drawPaint);
+
+    }
 
     public void drawHighlights(){
         int heightStep = height/4;
@@ -89,11 +106,26 @@ public class GameRenderer extends View {
         drawPaint.setColor(Color.YELLOW);
 
         drawPaint.setStrokeWidth(10);
+        int count = 0;
         for(int x = 1; x <= (numJugs+1)*2-1; x++) {
-            int jug = (x-1)/2;
+            int jug = (x)/2 - 1;
+            Log.d("Debug", jug + "");
+            if (jug < numJugs && jug >= 0 &&  highlighted[jug]) {
+                //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+                canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 2, drawPaint);
+                count++;
+                if (count == 2)
+                    count = 0;
+                Log.d("Debug", "YES!!" + jug);
+            }
+        }
+    }
 
-            if (jug < numJugs && jug >= 0 &&  highlighted[jug])
-                canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+    public void verifyIfWon(){
+        for(int x = 0; x < scenario.jugs.length; x++){
+            if (scenario.jugs[x].getVolume() == target){
+                canvas.drawText("DONE!!! Moves: " + moves, 200, 200, drawPaint);
+            }
         }
     }
 
@@ -103,10 +135,16 @@ public class GameRenderer extends View {
         //Log.d("Jug", jug + " " + dy + " =change");
         if (jug >= 0 && jug < numJugs && y > getHeight()/4){
             if (dy > 0){ //swipe up!
-                scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
+                if (scenario.jugs[jug].getVolume() != scenario.jugs[jug].getMaxCapacity()) {
+                    scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
+                    moves++;
+                }
             }
             else{
-                scenario.jugs[jug].setVolume(0);
+                if (scenario.jugs[jug].getVolume() != 0) {
+                    scenario.jugs[jug].setVolume(0);
+                    moves++;
+                }
             }
         }
         //Log.d("Capacity:", capacity[jug] + " vs " + scenario.jugs[jug].getVolume());
@@ -129,6 +167,8 @@ public class GameRenderer extends View {
         this.height = getHeight();
         this.width = getWidth();
         drawHighlights();
+        drawText();
+        verifyIfWon();
     }
 
     public void updateCapacities(){

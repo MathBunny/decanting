@@ -8,10 +8,12 @@ import java.io.Serializable;
 public class Scenario implements Serializable {
     private int jugCount;
     Jug [] jugs;
+    private int targetCapacity;
 
-    public Scenario(int jugCount){
+    public Scenario(int jugCount, int targetCapacity){
         this.jugCount = jugCount;
         this.jugs = new Jug[jugCount];
+        this.targetCapacity = targetCapacity;
     }
 
     public Jug [] getJugs(){
@@ -20,5 +22,9 @@ public class Scenario implements Serializable {
 
     public int getJugCount(){
         return jugCount;
+    }
+
+    public int getTargetCapacity(){
+        return targetCapacity;
     }
 }
