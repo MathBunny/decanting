@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL THREE"
-            android:id="@id/three"
+            android:id="@+id/three"
             android:layout_centerHorizontal="true"
             android:onClick="levelThree"
             />
@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL FOUR"
-            android:id= "@id/four"
+            android:id= "@+id/four"
             android:layout_centerHorizontal="true"
             android:onClick="levelFour"
             />
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL TWO"
-            android:id="@id/two"
+            android:id="@+id/two"
             android:onClick="levelTwo"
             android:layout_centerHorizontal="true"
             />

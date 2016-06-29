@@ -17,6 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void about(View v){
+
+    }
+
     public void play(View v){
         Intent levelSelection = new Intent(this, LevelSelection.class);
         startActivity(levelSelection); //open level selection
