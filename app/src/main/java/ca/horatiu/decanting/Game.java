@@ -18,18 +18,23 @@ public class Game extends AppCompatActivity implements
     private static final String DEBUG_TAG = "Gestures";
     private GestureDetectorCompat mDetector;
     private GameRenderer renderer;
+    private int leastMoves;
 
     int numJugs = 3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Scenario scenario = (Scenario)getIntent().getSerializableExtra("Scenario");
+        leastMoves = (int)getIntent().getSerializableExtra("LowestMoveCount");
         renderer = new GameRenderer(this, numJugs, scenario);
         setContentView(renderer);
 
         mDetector = new GestureDetectorCompat(this,this);
         mDetector.setOnDoubleTapListener(this);
+    }
 
+    public int getLeastMoves(){
+        return leastMoves;
     }
 
     @Override

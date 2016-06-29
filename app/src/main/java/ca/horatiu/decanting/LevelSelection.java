@@ -21,7 +21,11 @@ public class LevelSelection extends AppCompatActivity {
         scenario.jugs[0] = new Jug(0, 3);
         scenario.jugs[1] = new Jug(1, 5);
         scenario.jugs[2] =  new Jug(2, 7);
+        SolutionSolver s = new SolutionSolver(scenario.jugs, 2);
+
         playGame.putExtra("Scenario", scenario);
+        playGame.putExtra("LowestMoveCount", s.getMinSteps());
+
         startActivity(playGame);
     }
 
@@ -30,7 +34,11 @@ public class LevelSelection extends AppCompatActivity {
         Scenario scenario = new Scenario(2, 4); //lol?
         scenario.jugs[0] = new Jug(0, 3);
         scenario.jugs[1] = new Jug(1, 5);
+        SolutionSolver s = new SolutionSolver(scenario.jugs, 4);
+
         playGame.putExtra("Scenario", scenario);
+        playGame.putExtra("LowestMoveCount", s.getMinSteps());
+
         startActivity(playGame);
     }
 
@@ -39,7 +47,10 @@ public class LevelSelection extends AppCompatActivity {
         Scenario scenario = new Scenario(2, 4); //lol?
         scenario.jugs[0] = new Jug(0, 8);
         scenario.jugs[1] = new Jug(1, 5);
+        SolutionSolver s = new SolutionSolver(scenario.jugs, 4);
+
         playGame.putExtra("Scenario", scenario);
+        playGame.putExtra("LowestMoveCount", s.getMinSteps());
         startActivity(playGame);
     }
 
@@ -48,7 +59,11 @@ public class LevelSelection extends AppCompatActivity {
         Scenario scenario = new Scenario(2, 5); //lol?
         scenario.jugs[0] = new Jug(0, 11);
         scenario.jugs[1] = new Jug(1, 7);
+        SolutionSolver s = new SolutionSolver(scenario.jugs, 5);
+
         playGame.putExtra("Scenario", scenario);
+        playGame.putExtra("LowestMoveCount", s.getMinSteps());
+
         startActivity(playGame);
     }
 
@@ -57,7 +72,10 @@ public class LevelSelection extends AppCompatActivity {
         Scenario scenario = new Scenario(2, 8); //lol?
         scenario.jugs[0] = new Jug(0, 11);
         scenario.jugs[1] = new Jug(1, 9);
+        SolutionSolver s = new SolutionSolver(scenario.jugs, 8);
+
         playGame.putExtra("Scenario", scenario);
+        playGame.putExtra("LowestMoveCount", s.getMinSteps());
         startActivity(playGame);
     }
 

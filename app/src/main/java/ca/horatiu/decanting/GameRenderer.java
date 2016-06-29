@@ -133,10 +133,8 @@ public class GameRenderer extends View {
     public void verifyIfWon(){
         for(int x = 0; x < scenario.jugs.length; x++){
             if (scenario.jugs[x].getVolume() == target){
-                game.finished(moves, -1); //temporary!
+                game.finished(moves, game.getLeastMoves()); //temporary!
                 return;
-                //Scenario scenario = (Scenario)getIntent().getSerializableExtra("Scenario");
-                //canvas.drawText("DONE!!! Moves: " + moves, 200, 200, drawPaint);
             }
         }
     }
