@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/highscores"
             android:layout_alignRight="@+id/highscores"
-            android:text="Play Now!"
+            android:text="@string/play_now"
             android:id="@+id/play"
             android:onClick="play"
             android:layout_gravity="center_horizontal" />
@@ -67,10 +67,8 @@
             android:layout_below="@+id/highscores"
             android:layout_alignLeft="@+id/highscores"
             android:layout_alignRight="@+id/highscores"
-            android:text="About"
+            android:text="@string/about"
             android:id="@+id/button3"
-            android:onClick="about"
-
-            android:layout_gravity="|center_horizontal" />
+            android:onClick="about" />
     </RelativeLayout>
 </LinearLayout>

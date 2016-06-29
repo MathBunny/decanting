@@ -12,4 +12,8 @@
     <string name="level_nine">Level Nine</string>
     <string name="level_ten">Level Ten</string>
     <string name="level_eleven">Level Eleven</string>
+    <string name="play_now">Play Now</string>
+    <string name="about">About</string>
+    <string name="about_message">This app is created by Horatiu Lazu, a student at the University of Waterloo pursuing a degree in Computer Science. The purpose of this app is to allow players to enjoy the classic puzzle game of decanting, which involves players manipulating jugs of water to output a specific quantity. The solver engine was created using a top-down breadth-first-search algorithm that caches states to ensure performance. If you have questions regarding the product, contact me at horatiulazu@gmail.com</string>
+    <string name="level_selection"><u>Level Selection</u></string>
 </resources>

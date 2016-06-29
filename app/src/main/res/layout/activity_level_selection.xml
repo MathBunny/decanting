@@ -15,9 +15,19 @@
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="@string/level_selection"
+            android:id="@+id/title"
+            android:textSize="@dimen/text_size_medium"
+            />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
             android:text="LEVEL THREE"
             android:id="@+id/three"
             android:layout_centerHorizontal="true"
@@ -26,6 +36,7 @@
 
         <Button
             android:layout_toRightOf="@+id/three"
+            android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL FOUR"
@@ -36,6 +47,7 @@
 
         <Button
             android:layout_toRightOf="@+id/four"
+            android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL FIVE"
@@ -46,6 +58,7 @@
 
         <Button
             android:layout_toLeftOf="@+id/three"
+            android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL TWO"
@@ -56,6 +69,7 @@
 
         <Button
             android:layout_toLeftOf="@+id/two"
+            android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LEVEL ONE"
@@ -78,6 +92,7 @@
 
         <Button
             android:layout_toRightOf="@+id/six"
+
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

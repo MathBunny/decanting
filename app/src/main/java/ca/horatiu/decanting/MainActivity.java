@@ -14,11 +14,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void highscores(View v){
-
+        Intent openHighscores = new Intent(this, Highscores.class);
+        startActivity(openHighscores);
     }
 
     public void about(View v){
-
+        Intent openAbout = new Intent(this, About.class);
+        startActivity(openAbout);
     }
 
     public void play(View v){
