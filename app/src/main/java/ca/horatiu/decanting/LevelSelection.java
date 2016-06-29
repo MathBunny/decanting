@@ -19,13 +19,46 @@ public class LevelSelection extends AppCompatActivity {
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(3, 2); //lol?
         scenario.jugs[0] = new Jug(0, 3);
-       // scenario.jugs[0].setVolume(0);
-        scenario.jugs[1] = new Jug(0, 5);
-       // scenario.jugs[1].setVolume(1);
-        scenario.jugs[2] =  new Jug(0, 7);
-        //scenario.jugs[2].setVolume(7);
-
+        scenario.jugs[1] = new Jug(1, 5);
+        scenario.jugs[2] =  new Jug(2, 7);
         playGame.putExtra("Scenario", scenario);
         startActivity(playGame);
     }
+
+    public void levelTwo(View view){
+        Intent playGame = new Intent(this, Game.class);
+        Scenario scenario = new Scenario(2, 4); //lol?
+        scenario.jugs[0] = new Jug(0, 3);
+        scenario.jugs[1] = new Jug(1, 5);
+        playGame.putExtra("Scenario", scenario);
+        startActivity(playGame);
+    }
+
+    public void levelThree(View view){
+        Intent playGame = new Intent(this, Game.class);
+        Scenario scenario = new Scenario(2, 4); //lol?
+        scenario.jugs[0] = new Jug(0, 8);
+        scenario.jugs[1] = new Jug(1, 5);
+        playGame.putExtra("Scenario", scenario);
+        startActivity(playGame);
+    }
+
+    public void levelFour(View view){
+        Intent playGame = new Intent(this, Game.class);
+        Scenario scenario = new Scenario(2, 5); //lol?
+        scenario.jugs[0] = new Jug(0, 11);
+        scenario.jugs[1] = new Jug(1, 7);
+        playGame.putExtra("Scenario", scenario);
+        startActivity(playGame);
+    }
+
+    public void levelFive(View view){
+        Intent playGame = new Intent(this, Game.class);
+        Scenario scenario = new Scenario(2, 8); //lol?
+        scenario.jugs[0] = new Jug(0, 11);
+        scenario.jugs[1] = new Jug(1, 9);
+        playGame.putExtra("Scenario", scenario);
+        startActivity(playGame);
+    }
+
 }

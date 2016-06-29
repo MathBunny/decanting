@@ -7,40 +7,42 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ca.horatiu.decanting.LevelSelection">
+    tools:context="ca.horatiu.decanting.CompletedLevel">
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/level_one"
-            android:id="@+id/button"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="You finished in 0 moves. Best solution is 0 moves."
+            android:id="@+id/textView"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal|center"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Congratulations!"
+            android:id="@+id/congratulations"
             android:layout_row="0"
             android:layout_column="0"
-            android:onClick="levelOne"
-            />
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/level_two"
-            android:id="@+id/button2"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:onClick="levelTwo"
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_three"
-            android:id="@+id/button3"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:onClick="levelThree"
+            android:text="Continue"
+            android:id="@+id/button4"
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal"
+            android:onClick="levelSelection"
             />
     </GridLayout>
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package ca.horatiu.decanting;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.view.MotionEvent;
 
 import java.io.Serializable;
 
-public class Game extends Activity implements
+public class Game extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
 
@@ -96,5 +97,11 @@ public class Game extends Activity implements
         return true;
     }
 
+    public void finished(int moves, int minimumMoves){
+        Intent playGame = new Intent(this, CompletedLevel.class);
+        Moves movesIntent = new Moves(moves, minimumMoves);
+        playGame.putExtra("Moves", movesIntent);
+        startActivity(playGame);
+    }
 
 }

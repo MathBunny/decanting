@@ -2,12 +2,14 @@ package ca.horatiu.decanting;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
@@ -32,16 +34,18 @@ public class GameRenderer extends View {
     boolean hasHighlighted = false;
     private int moves = 0;
     private int target;
+    private Game game;
 
     int radius = 0;
 
-    public GameRenderer(Context context, int numJugs, Scenario scenario) {
+    public GameRenderer(Context context, int numJugs, Scenario scenario) { //numJugs is useless!
         super(context);
+        this.game = (Game)context;
         drawPaint = new Paint();
         drawPaint.setColor(Color.parseColor("#f0f0f0"));
         drawPaint.setAntiAlias(true);
         setOnMeasureCallback();
-        this.numJugs = numJugs;
+        this.numJugs = scenario.jugs.length;
         h = new Handler();
         this.scenario = scenario;
         this.target = scenario.getTargetCapacity();
@@ -87,16 +91,21 @@ public class GameRenderer extends View {
     }
 
     public void drawText(){
-        drawPaint.setColor(Color.BLUE);
-        drawPaint.setTextSize(64); //1000? lol
-        canvas.drawText("Goal: " + scenario.getTargetCapacity(), 0, 100, drawPaint);
-        canvas.drawText("Moves: " + moves, 0, 200, drawPaint);
+        drawPaint.setColor(Color.parseColor("#2196f3"));
+        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        //you have the pixels now you need to figure out the size...
+        drawPaint.setTextSize(pixels); //1000? lol
+        canvas.drawText("Goal: " + scenario.getTargetCapacity() + ", Moves: " + moves, 0, 30, drawPaint);
 
+        /*
         for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
             canvas.drawText(scenario.jugs[x].getVolume() + "", (width/(numJugs+2)) * (x+1), getHeight()-20, drawPaint); //u should put the current capacity :)
 
         for(int x = 0; x < scenario.jugs.length; x++)
             canvas.drawText(scenario.jugs[x].getMaxCapacity() + "", (width/(numJugs+2)) * (x+1), getHeight()/2, drawPaint);
+        */
+        for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
+            canvas.drawText("Max: " + scenario.jugs[x].getMaxCapacity() + ", Current: " + scenario.jugs[x].getVolume(), (width/(numJugs+2)) * (x+1), getHeight()/2, drawPaint); //u should put the current capacity :)
 
     }
 
@@ -124,7 +133,10 @@ public class GameRenderer extends View {
     public void verifyIfWon(){
         for(int x = 0; x < scenario.jugs.length; x++){
             if (scenario.jugs[x].getVolume() == target){
-                canvas.drawText("DONE!!! Moves: " + moves, 200, 200, drawPaint);
+                game.finished(moves, -1); //temporary!
+                return;
+                //Scenario scenario = (Scenario)getIntent().getSerializableExtra("Scenario");
+                //canvas.drawText("DONE!!! Moves: " + moves, 200, 200, drawPaint);
             }
         }
     }
@@ -187,8 +199,8 @@ public class GameRenderer extends View {
         drawPaint.setStrokeWidth(10);
         for(int x = 1; x <= (numJugs+1)*2-1; x++) {
             //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-        }
+            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == ((numJugs==3) ? (7) : (5)) ? (-GAP) : (0))), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == ((numJugs==3) ? (7) : (5))) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+        } //is it 5?
 
         drawPaint.setColor(Color.parseColor("#03a9f4")); //blue? lol
         //draw the base value

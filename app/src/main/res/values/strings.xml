@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Decanting</string>
     <string name="level_one">Level one</string>
+    <string name="level_two">Level Two</string>
+    <string name="level_three">Level Three</string>
 </resources>
