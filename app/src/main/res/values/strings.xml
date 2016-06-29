@@ -3,4 +3,13 @@
     <string name="level_one">Level one</string>
     <string name="level_two">Level Two</string>
     <string name="level_three">Level Three</string>
+    <string name="level_four">Level Four</string>
+    <string name="level_five">Level Five</string>
+
+    <string name="level_six">Level Six</string>
+    <string name="level_seven">Level Seven</string>
+    <string name="level_eight">Level Eight</string>
+    <string name="level_nine">Level Nine</string>
+    <string name="level_ten">Level Ten</string>
+    <string name="level_eleven">Level Eleven</string>
 </resources>

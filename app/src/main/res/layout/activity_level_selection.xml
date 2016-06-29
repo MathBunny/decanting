@@ -9,7 +9,129 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="ca.horatiu.decanting.LevelSelection">
 
-    <GridLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL THREE"
+            android:id="@id/three"
+            android:layout_centerHorizontal="true"
+            android:onClick="levelThree"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL FOUR"
+            android:id= "@id/four"
+            android:layout_centerHorizontal="true"
+            android:onClick="levelFour"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL FIVE"
+            android:id="@+id/five"
+            android:layout_centerHorizontal="true"
+            android:onClick="levelFive"
+            />
+
+        <Button
+            android:layout_toLeftOf="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL TWO"
+            android:id="@id/two"
+            android:onClick="levelTwo"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:layout_toLeftOf="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL ONE"
+            android:id="@+id/one"
+            android:onClick="levelOne"
+            android:layout_centerHorizontal="true"
+            />
+
+
+        <Button
+            android:layout_alignLeft="@+id/one"
+            android:layout_alignRight="@+id/one"
+            android:layout_below="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL SIX"
+            android:id="@+id/six"
+            android:onClick="levelSix"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_toRightOf="@+id/six"
+            android:layout_below="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL SEVEN"
+            android:id="@+id/seven"
+            android:onClick="levelSeven"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/two"
+            android:layout_alignRight="@+id/two"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/six"
+            android:layout_below="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL EIGHT"
+            android:id="@+id/eight"
+            android:onClick="levelEight"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/three"
+            android:layout_alignRight="@+id/three"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/seven"
+            android:layout_below="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL NINE"
+            android:id="@+id/nine"
+            android:onClick="levelNine"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/four"
+            android:layout_alignRight="@+id/four"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/eight"
+            android:layout_below="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL TEN"
+            android:id="@+id/ten"
+            android:onClick="levelTen"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/five"
+            android:layout_alignRight="@+id/five"
+            />
+
+    </RelativeLayout>
+
+
+    <!--<GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,7 +143,7 @@
             android:layout_row="0"
             android:layout_column="0"
             android:onClick="levelOne"
-            />
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
@@ -31,7 +153,7 @@
             android:layout_row="0"
             android:layout_column="1"
             android:onClick="levelTwo"
-            />
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
@@ -41,26 +163,51 @@
             android:layout_row="0"
             android:layout_column="2"
             android:onClick="levelThree"
-            />
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/level_three"
+            android:text="@string/level_four"
             android:id="@+id/button4"
             android:layout_row="0"
-            android:layout_column="2"
+            android:layout_column="3"
             android:onClick="levelFour"
-            />
+            android:layout_gravity="right" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/level_three"
+            android:text="@string/level_five"
             android:id="@+id/button5"
             android:layout_row="0"
-            android:layout_column="2"
+            android:layout_column="4"
             android:onClick="levelFive"
-            />
-    </GridLayout>
+            android:layout_gravity="right" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL SIX"
+            android:id="@+id/button6"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL SEVEN"
+            android:id="@+id/button7"
+            android:layout_row="1"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LEVEL EIGHT"
+            android:id="@+id/button8"
+            android:layout_row="1"
+            android:layout_column="2" />
+
+    </GridLayout> -->
 </RelativeLayout>
