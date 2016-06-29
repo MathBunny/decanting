@@ -61,4 +61,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+    }
+
 }
