@@ -114,10 +114,12 @@ public class SolutionSolverTest { //implement JUnit so it's legit? :-)
   
   
   public SolutionSolverTest(){
-    arr = new Jug[2];
-    arr[0] = new Jug(0, 11); //the 0 & 1 don't actually matter!
-    arr[1] = new Jug(1, 9);
-    target = 8;
+    arr = new Jug[4];
+    arr[0] = new Jug(0, 12); //the 0 & 1 don't actually matter!
+    arr[1] = new Jug(1, 19);
+    arr[2] = new Jug(2, 30);
+    arr[3] = new Jug(3, 23);
+    target = 21;
     
     System.out.println("Minimum number of moves: " + solve());
   }

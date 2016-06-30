@@ -20,7 +20,7 @@ public class Game extends AppCompatActivity implements
     private GameRenderer renderer;
     private int leastMoves;
 
-    int numJugs = 3;
+    int numJugs = 4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
