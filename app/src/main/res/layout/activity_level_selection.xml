@@ -143,6 +143,28 @@
             android:layout_alignRight="@+id/five"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/six"
+            android:layout_alignRight="@+id/ten"
+            android:text="Custom Level"
+            android:onClick="customLevel"
+            />
+
+        <!--<Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/nine"
+            android:layout_alignRight="@+id/ten"
+            android:text="Generate Level"
+            android:onClick="generateLevel"
+            /> -->
+
     </RelativeLayout>
 
 

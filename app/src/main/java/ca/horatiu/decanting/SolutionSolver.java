@@ -10,8 +10,9 @@ public class SolutionSolver {
     private Jug [] arr;
     private int target;
     private HashSet<String> dp = new HashSet<String>(); //store if this was already considered in Q
-    private int minSteps;
+    private int minSteps = -1;
     private String steps;
+    public static int MAX_MOVES_PERMITTED = 1000;
 
     private String generateCache(Jug [] array){
         StringBuilder cache = new StringBuilder(); //only noobs do += with Strings :-)
@@ -37,7 +38,8 @@ public class SolutionSolver {
                         if (temp.arr[x].getVolume() == target){
                             System.out.println("Solution: " + temp.actions);
                             steps = temp.actions;
-                            break bfs;
+                            return moves;
+                            //break bfs;
                         }
                     }
                     //This is filling in the buckets
@@ -81,9 +83,13 @@ public class SolutionSolver {
                     }
                 }
                 moves++;
+                if (moves > MAX_MOVES_PERMITTED){
+                    minSteps = -1;
+                    return -1; //ok!
+                }
             }
         }
-        return moves;
+        return -1;
     }
 
     static class State{

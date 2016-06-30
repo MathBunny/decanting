@@ -151,4 +151,9 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void customLevel(View view){
+        Intent customLevelConfigurator = new Intent(this, CustomLevelConfiguration.class);
+        startActivity(customLevelConfigurator);
+    }
+
 }

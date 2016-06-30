@@ -197,7 +197,7 @@ public class GameRenderer extends View {
         drawPaint.setStrokeWidth(10);
         for(int x = 1; x <= (numJugs+1)*2-1; x++) {
             //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == ((numJugs==3) ? (7) : (5)) ? (-GAP) : (0))), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == ((numJugs==3) ? (7) : (5))) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+            canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5)) ? (-GAP) : (0))), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5))) ? (-GAP) : (0)), heightStep * 2, drawPaint);
         } //is it 5?
 
         drawPaint.setColor(Color.parseColor("#03a9f4")); //blue? lol

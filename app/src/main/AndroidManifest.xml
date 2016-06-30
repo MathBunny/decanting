@@ -18,20 +18,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Highscores"
-            android:screenOrientation="landscape"
-            />
-        <activity android:name=".About"
-            android:screenOrientation="landscape"
-            />
-        <activity android:name=".Game"
-            android:screenOrientation="landscape"
-            />
-        <activity android:name=".LevelSelection"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".CompletedLevel"
-            android:screenOrientation="landscape"
-            />
+        <activity
+            android:name=".Highscores"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".About"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Game"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".LevelSelection"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".CompletedLevel"
+            android:screenOrientation="landscape" />
+        <activity android:name=".CustomLevelConfiguration"></activity>
     </application>
 
 </manifest>
