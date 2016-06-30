@@ -91,10 +91,10 @@ public class GameRenderer extends View {
 
     public void drawText(){
         drawPaint.setColor(Color.parseColor("#2196f3"));
-        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
         //you have the pixels now you need to figure out the size...
         drawPaint.setTextSize(pixels); //1000? lol
-        canvas.drawText("Goal: " + scenario.getTargetCapacity() + ", Moves: " + moves, 0, 30, drawPaint);
+        canvas.drawText("You have to obtain " + scenario.getTargetCapacity() + "L, your move count is: " + moves, 0, 60, drawPaint);
 
         /*
         for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
@@ -117,7 +117,7 @@ public class GameRenderer extends View {
         int count = 0;
         for(int x = 1; x <= (numJugs+1)*2-1; x++) {
             int jug = (x)/2 - 1;
-            Log.d("Debug", jug + "");
+            //Log.d("Debug", jug + "");
             if (jug < numJugs && jug >= 0 &&  highlighted[jug]) {
                 //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
                 canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 2, drawPaint);
@@ -180,6 +180,7 @@ public class GameRenderer extends View {
         drawText();
         drawBottom();
         drawScales();
+        drawCap();
         verifyIfWon();
     }
 
@@ -209,6 +210,8 @@ public class GameRenderer extends View {
             skipValue = maxCapacity/10;
         }
         int pixelJump = height/maxCapacity;
+        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
+        drawPaint.setTextSize(pixels); //1000? lol
         for(int x = 0; x < numJugs; x++){
             xCord += widthStep;
             for(int y = 0; y <= maxCapacity; y+= skipValue){
@@ -221,6 +224,19 @@ public class GameRenderer extends View {
                 }
             }
         }
+    }
+
+    public void drawCap(){
+        drawPaint.setStrokeWidth(1);
+        drawPaint.setColor(Color.parseColor("#9e9e9e"));
+        int height = getHeight()/2;
+        int widthStep = (width/(numJugs+2)); //sduplicate from method below!
+        int xCord = 0;
+        for(int x = 0; x < numJugs; x++){
+            xCord += widthStep;
+            canvas.drawLine(xCord, getHeight()-((height/maxCapacity) * scenario.jugs[x].getMaxCapacity()), xCord+widthStep-GAP, getHeight()-((height/maxCapacity) * scenario.jugs[x].getMaxCapacity()), drawPaint);
+        }
+        drawPaint.setStrokeWidth(10);
     }
 
     public void drawBackground(Canvas canvas){
@@ -264,7 +280,7 @@ public class GameRenderer extends View {
             invalidate();
         }
         else{
-            invalidate();
+            //invalidate();
         }
 
     }
