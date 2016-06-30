@@ -25,7 +25,7 @@ public class GameRenderer extends View {
     final int GAP = 20;
     private Handler h;
     private final int FRAME_RATE = 2 << 20;
-    private final int SPEED = 1;
+    private final int SPEED = 5;
     Scenario scenario;
     int maxCapacity;
     int [] capacity;
@@ -211,6 +211,9 @@ public class GameRenderer extends View {
             canvas.drawRect(x1, y2, x2, y1, drawPaint);
         }
         for(int x = 0; x < capacity.length; x++){
+            if (Math.abs(capacity[x]-capacityDrawn[x]) < 5){
+                continue;
+            }
             if (capacity[x] < capacityDrawn[x]){
                 capacityDrawn[x]-=SPEED;
             }
