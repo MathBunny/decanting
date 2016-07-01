@@ -12,6 +12,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 /**
  * Created by Horatiu on 27/06/2016.
@@ -62,6 +63,7 @@ public class GameRenderer extends View {
     public void tapped(int x){
         int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
         Log.d("Tap", "Tapped! Jug: " + jug + " ");
+
         if (hasHighlighted){
             if (jug >= 0 && jug < numJugs){
                 if (!highlighted[jug]){
@@ -91,10 +93,22 @@ public class GameRenderer extends View {
 
     public void drawText(){
         drawPaint.setColor(Color.parseColor("#2196f3"));
-        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics());
+        float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
         //you have the pixels now you need to figure out the size...
         drawPaint.setTextSize(pixels); //1000? lol
-        canvas.drawText("You have to obtain " + scenario.getTargetCapacity() + "L, your move count is: " + moves, 0, 60, drawPaint);
+        canvas.drawText(""+ moves, getWidth()-50, 60, drawPaint);
+        canvas.drawText("?", 50, 60, drawPaint);
+
+        int xPos = (canvas.getWidth() / 2);
+        int yPos = 75;
+        //((textPaint.descent() + textPaint.ascent()) / 2) is the distance from the baseline to the center.
+        pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
+        //you have the pixels now you need to figure out the size...
+        drawPaint.setTextSize(pixels); //1000? lol
+
+        drawPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(scenario.getTargetCapacity() + "L", xPos, yPos, drawPaint);
+
 
         /*
         for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
@@ -120,7 +134,7 @@ public class GameRenderer extends View {
             //Log.d("Debug", jug + "");
             if (jug < numJugs && jug >= 0 &&  highlighted[jug]) {
                 //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-                canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 2, drawPaint);
+                canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 4+5, widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 2, drawPaint); //+5 on heightStep*4
                 count++;
                 if (count == 2)
                     count = 0;
@@ -176,9 +190,9 @@ public class GameRenderer extends View {
         drawBackground(canvas);
         this.height = getHeight();
         this.width = getWidth();
+        drawBottom();
         drawHighlights();
         drawText();
-        drawBottom();
         drawScales();
         drawCap();
         verifyIfWon();
@@ -187,7 +201,7 @@ public class GameRenderer extends View {
     public void updateCapacities(){
         for(int x = 0; x < scenario.jugs.length; x++){
             capacity[x] = (int) (((double)scenario.jugs[x].getVolume()/maxCapacity)*((getHeight()*0.5)));
-            Log.d("Updated", capacity[x] + "");
+            //Log.d("Updated", capacity[x] + "");
         }
         //Log.d("Height: ", getHeight() + "");
     }
@@ -196,7 +210,7 @@ public class GameRenderer extends View {
         int widthStep = (width/(numJugs+2));
 
         drawPaint.setColor(Color.parseColor("#9e9e9e"));
-        canvas.drawLine(widthStep, height-5, widthStep*(numJugs+1)-GAP, height-5, drawPaint);
+        canvas.drawLine(widthStep-5, height-5, widthStep*(numJugs+1)-GAP+5, height-5, drawPaint); //+-2
     }
 
     public void drawScales(){
@@ -215,6 +229,8 @@ public class GameRenderer extends View {
         for(int x = 0; x < numJugs; x++){
             xCord += widthStep;
             for(int y = 0; y <= maxCapacity; y+= skipValue){
+                if (y == 0) //may look odd on some displays?
+                    continue;
                 if (scenario.jugs[x].getMaxCapacity() == y || (scenario.jugs[x].getMaxCapacity()-y < skipValue && scenario.jugs[x].getMaxCapacity()-y > 0)){
                     drawPaint.setColor(Color.GRAY);
                     canvas.drawText(y + "", xCord, getHeight() - (y * pixelJump) + 10, drawPaint);
@@ -234,7 +250,7 @@ public class GameRenderer extends View {
         int xCord = 0;
         for(int x = 0; x < numJugs; x++){
             xCord += widthStep;
-            canvas.drawLine(xCord, getHeight()-((height/maxCapacity) * scenario.jugs[x].getMaxCapacity()), xCord+widthStep-GAP, getHeight()-((height/maxCapacity) * scenario.jugs[x].getMaxCapacity()), drawPaint);
+            canvas.drawLine(xCord, (int)(getHeight()-(((double)height/maxCapacity) * scenario.jugs[x].getMaxCapacity())), xCord+widthStep-GAP, (int)(getHeight()-(((double)height/maxCapacity) * scenario.jugs[x].getMaxCapacity())), drawPaint);
         }
         drawPaint.setStrokeWidth(10);
     }
@@ -249,7 +265,7 @@ public class GameRenderer extends View {
             //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
             canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5)) ? (-GAP) : (0))), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5))) ? (-GAP) : (0)), heightStep * 2, drawPaint);
         } //is it 5?
-        canvas.drawLine(widthStep, height-5, widthStep*(numJugs+1)-GAP, height-5, drawPaint);
+        canvas.drawLine(widthStep, height, widthStep*(numJugs+1)-GAP, height, drawPaint); //why height-5?
 
         drawPaint.setColor(Color.parseColor("#03a9f4")); //blue? lol
         //draw the base value
@@ -263,6 +279,7 @@ public class GameRenderer extends View {
         }
         for(int x = 0; x < capacity.length; x++){
             if (Math.abs(capacity[x]-capacityDrawn[x]) < 5){
+                capacityDrawn[x] = capacity[x];
                 continue;
             }
             if (capacity[x] < capacityDrawn[x]){

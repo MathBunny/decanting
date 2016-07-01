@@ -18,4 +18,5 @@
     <string name="level_selection"><u>Level Selection</u></string>
     <string name="level_configuration"><u>Level Configuration</u></string>
     <string name="zero">0</string>
+    <string name="main_menu"><u>Main Menu</u></string>
 </resources>

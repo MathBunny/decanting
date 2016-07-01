@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="2dp"
+    android:background="@drawable/background_grey"
     tools:context="ca.horatiu.decanting.CustomLevelConfiguration">
     <RelativeLayout
         android:layout_width="match_parent"

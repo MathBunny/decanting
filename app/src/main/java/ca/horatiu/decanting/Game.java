@@ -2,12 +2,14 @@ package ca.horatiu.decanting;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -27,6 +29,10 @@ public class Game extends AppCompatActivity implements
         Scenario scenario = (Scenario)getIntent().getSerializableExtra("Scenario");
         leastMoves = (int)getIntent().getSerializableExtra("LowestMoveCount");
         renderer = new GameRenderer(this, numJugs, scenario);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            renderer.setBackground(getResources().getDrawable(R.drawable.background_grey));
+        }
+
         setContentView(renderer);
 
         mDetector = new GestureDetectorCompat(this,this);
@@ -97,6 +103,11 @@ public class Game extends AppCompatActivity implements
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         //single tap here...
+        int jug = ((int)event.getX()/(renderer.getWidth()/(numJugs+2)))-1;
+
+        if (jug < 0 && (int)event.getY() < renderer.getHeight()/2){
+            Toast.makeText(getApplicationContext(), "Swipe up and down on the jugs to fill and empty, tap the source jug and destination to pour into another. Try to fill one jug to the top capacity.", Toast.LENGTH_LONG).show();
+        }
         renderer.tapped((int)event.getX());
 
         return true;
