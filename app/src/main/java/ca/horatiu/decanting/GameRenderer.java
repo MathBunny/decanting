@@ -24,8 +24,9 @@ public class GameRenderer extends View {
     private Paint drawPaint;
     private Canvas canvas;
     final int GAP = 20;
+    final int TOP_PADDING = 150;
     private Handler h;
-    private final int FRAME_RATE = 2 << 20;
+    private final int FRAME_RATE = 2 << 20; //lol.
     private final int SPEED = 5;
     private  Scenario scenario;
     private int maxCapacity;
@@ -95,12 +96,18 @@ public class GameRenderer extends View {
         drawPaint.setColor(Color.parseColor("#2196f3"));
         float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
         //you have the pixels now you need to figure out the size...
+        drawPaint.setTextAlign(Paint.Align.RIGHT);
         drawPaint.setTextSize(pixels); //1000? lol
-        canvas.drawText(""+ moves, getWidth()-50, 60, drawPaint);
-        canvas.drawText("?", 50, 60, drawPaint);
+        canvas.drawText(moves + ((moves==1) ? " move" : " moves"), getWidth()-50, TOP_PADDING, drawPaint);
+        drawPaint.setTextAlign(Paint.Align.LEFT);
+        canvas.drawText("?", 50, TOP_PADDING, drawPaint);
+        drawPaint.setTextAlign(Paint.Align.CENTER);
+        for(int x =1; x <= numJugs; x++)
+            canvas.drawText(scenario.jugs[x - 1].getMaxCapacity() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height / 2 - 10, drawPaint);
+
 
         int xPos = (canvas.getWidth() / 2);
-        int yPos = 75;
+        int yPos = TOP_PADDING;
         //((textPaint.descent() + textPaint.ascent()) / 2) is the distance from the baseline to the center.
         pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
         //you have the pixels now you need to figure out the size...
@@ -108,6 +115,12 @@ public class GameRenderer extends View {
 
         drawPaint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(scenario.getTargetCapacity() + "L", xPos, yPos, drawPaint);
+
+        drawPaint.setColor(Color.GRAY);
+        drawPaint.setTextSize(pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16, getResources().getDisplayMetrics()));
+        for(int x = 1; x <= numJugs; x++){
+            canvas.drawText(scenario.jugs[x - 1].getVolume() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height-30, drawPaint);
+        }
 
 
         /*
@@ -224,6 +237,7 @@ public class GameRenderer extends View {
             skipValue = maxCapacity/10;
         }
         int pixelJump = height/maxCapacity;
+        final int LEFT_ALIGN = 20;
         float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
         drawPaint.setTextSize(pixels); //1000? lol
         for(int x = 0; x < numJugs; x++){
@@ -233,10 +247,10 @@ public class GameRenderer extends View {
                     continue;
                 if (scenario.jugs[x].getMaxCapacity() == y || (scenario.jugs[x].getMaxCapacity()-y < skipValue && scenario.jugs[x].getMaxCapacity()-y > 0)){
                     drawPaint.setColor(Color.GRAY);
-                    canvas.drawText(y + "", xCord, getHeight() - (y * pixelJump) + 10, drawPaint);
+                    canvas.drawText(y + "", xCord + LEFT_ALIGN, getHeight() - (y * pixelJump) + 10, drawPaint);
                     drawPaint.setColor(Color.BLACK);
                 }else {
-                    canvas.drawText(y + "", xCord, getHeight() - (y * pixelJump) + 10, drawPaint);
+                    canvas.drawText(y + "", xCord + LEFT_ALIGN, getHeight() - (y * pixelJump) + 10, drawPaint);
                 }
             }
         }

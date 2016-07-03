@@ -8,5 +8,4 @@ This Android app is currently under development. It will allow a user to play a 
 * OOP architecture is mainly done
 
 ##In-Progress
-* Proper menu design
 * High-scores with SQLite database
