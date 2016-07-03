@@ -67,13 +67,10 @@ public class GameRenderer extends View {
 
         if (hasHighlighted){
             if (jug >= 0 && jug < numJugs){
-                if (!highlighted[jug]){
-                    //swap these two :-)
+                if (!highlighted[jug]){ //swap these two :-)
                     for(int y = 0; y < scenario.jugs.length; y++){
                         if (jug != y && highlighted[y]){
-                            //swap this one...
-                            scenario.jugs[y].pour(scenario.jugs[jug]); //is this ok?
-                            Log.d("Tap", "Pour from " + x + " to: " + y);
+                            scenario.jugs[y].pour(scenario.jugs[jug]);
                             highlighted[y] = false;
                             moves++;
                         }
@@ -95,24 +92,22 @@ public class GameRenderer extends View {
     public void drawText(){
         drawPaint.setColor(Color.parseColor("#2196f3"));
         float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
-        //you have the pixels now you need to figure out the size...
         drawPaint.setTextAlign(Paint.Align.RIGHT);
         drawPaint.setTextSize(pixels); //1000? lol
+
         canvas.drawText(moves + ((moves==1) ? " move" : " moves"), getWidth()-50, TOP_PADDING, drawPaint);
+
         drawPaint.setTextAlign(Paint.Align.LEFT);
         canvas.drawText("?", 50, TOP_PADDING, drawPaint);
+
         drawPaint.setTextAlign(Paint.Align.CENTER);
         for(int x =1; x <= numJugs; x++)
             canvas.drawText(scenario.jugs[x - 1].getMaxCapacity() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height / 2 - 10, drawPaint);
 
-
         int xPos = (canvas.getWidth() / 2);
         int yPos = TOP_PADDING;
-        //((textPaint.descent() + textPaint.ascent()) / 2) is the distance from the baseline to the center.
         pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 48, getResources().getDisplayMetrics());
-        //you have the pixels now you need to figure out the size...
-        drawPaint.setTextSize(pixels); //1000? lol
-
+        drawPaint.setTextSize(pixels);
         drawPaint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(scenario.getTargetCapacity() + "L", xPos, yPos, drawPaint);
 
@@ -121,37 +116,22 @@ public class GameRenderer extends View {
         for(int x = 1; x <= numJugs; x++){
             canvas.drawText(scenario.jugs[x - 1].getVolume() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height-30, drawPaint);
         }
-
-
-        /*
-        for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
-            canvas.drawText(scenario.jugs[x].getVolume() + "", (width/(numJugs+2)) * (x+1), getHeight()-20, drawPaint); //u should put the current capacity :)
-
-        for(int x = 0; x < scenario.jugs.length; x++)
-            canvas.drawText(scenario.jugs[x].getMaxCapacity() + "", (width/(numJugs+2)) * (x+1), getHeight()/2, drawPaint);
-        */
-        //for(int x = 0; x < scenario.jugs.length; x++) //I dislike these constants :(
-            //canvas.drawText("Max: " + scenario.jugs[x].getMaxCapacity() + ", Current: " + scenario.jugs[x].getVolume(), (width/(numJugs+2)) * (x+1), getHeight()/2, drawPaint); //u should put the current capacity :)
-
     }
 
     public void drawHighlights(){
         int heightStep = height/4;
         int widthStep = (width/(numJugs+2));
         drawPaint.setColor(Color.parseColor("#1976d2"));
-
         drawPaint.setStrokeWidth(10);
+
         int count = 0;
         for(int x = 1; x <= (numJugs+1)*2-1; x++) {
             int jug = (x)/2 - 1;
-            //Log.d("Debug", jug + "");
             if (jug < numJugs && jug >= 0 &&  highlighted[jug]) {
-                //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 4, widthStep * (int) ((x + 1) / 2) + ((x % 4 == 0 && x != 2 || x == 7) ? (-GAP) : (0)), heightStep * 2, drawPaint);
                 canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 4+5, widthStep * (int) ((x + 1) / 2) + ((count==0) ? (0) : (-GAP)), heightStep * 2, drawPaint); //+5 on heightStep*4
                 count++;
                 if (count == 2)
                     count = 0;
-                Log.d("Debug", "YES!!" + jug);
             }
         }
     }
@@ -167,9 +147,7 @@ public class GameRenderer extends View {
     }
 
     public void gesture(int x, int y, int dx, int dy){
-        //calculate the real jug
-        int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
-        //Log.d("Jug", jug + " " + dy + " =change");
+        int jug = (x/(getWidth()/(numJugs+2)))-1;
         if (jug >= 0 && jug < numJugs && y > getHeight()/4){
             if (dy > 0){ //swipe up!
                 if (scenario.jugs[jug].getVolume() != scenario.jugs[jug].getMaxCapacity()) {
@@ -184,7 +162,6 @@ public class GameRenderer extends View {
                 }
             }
         }
-        //Log.d("Capacity:", capacity[jug] + " vs " + scenario.jugs[jug].getVolume());
         invalidate();
     }
 
@@ -212,11 +189,8 @@ public class GameRenderer extends View {
     }
 
     public void updateCapacities(){
-        for(int x = 0; x < scenario.jugs.length; x++){
+        for(int x = 0; x < scenario.jugs.length; x++)
             capacity[x] = (int) (((double)scenario.jugs[x].getVolume()/maxCapacity)*((getHeight()*0.5)));
-            //Log.d("Updated", capacity[x] + "");
-        }
-        //Log.d("Height: ", getHeight() + "");
     }
 
     public void drawBottom(){
@@ -231,8 +205,7 @@ public class GameRenderer extends View {
         int widthStep = (width/(numJugs+2)); //sduplicate from method below!
         int xCord = 0;
         int skipValue = 1;
-        drawPaint.setColor(Color.BLACK);
-        //maxCapacity
+        drawPaint.setColor(Color.BLACK); //maxCapacity
         if (maxCapacity > 20){
             skipValue = maxCapacity/10;
         }
@@ -275,22 +248,20 @@ public class GameRenderer extends View {
         drawPaint.setColor(Color.parseColor("#9e9e9e"));
 
         drawPaint.setStrokeWidth(10);
-        for(int x = 1; x <= (numJugs+1)*2-1; x++) {
-            //canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 && x != 8) ? (-GAP) : (0)), heightStep * 2, drawPaint);
+        for(int x = 1; x <= (numJugs+1)*2-1; x++)
             canvas.drawLine(widthStep * (int) ((x + 1) / 2) + ((x % 2 == 0 && x != 2 ||  x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5)) ? (-GAP) : (0))), heightStep * 4, widthStep * (int)((x + 1) / 2) + ((x % 2 == 0 && x != 2 || x == ((numJugs==3) ? (7) : (numJugs==4) ? (9) : (5))) ? (-GAP) : (0)), heightStep * 2, drawPaint);
-        } //is it 5?
-        canvas.drawLine(widthStep, height, widthStep*(numJugs+1)-GAP, height, drawPaint); //why height-5?
 
-        drawPaint.setColor(Color.parseColor("#03a9f4")); //blue? lol
-        //draw the base value
-        for(int x = 1; x <= capacityDrawn.length; x++){
-            //draw the rectangle
+        canvas.drawLine(widthStep, height, widthStep*(numJugs+1)-GAP, height, drawPaint);
+
+        drawPaint.setColor(Color.parseColor("#03a9f4"));
+        for(int x = 1; x <= capacityDrawn.length; x++){ //draw the rectangle
             int x1 = widthStep * (int) (x) + 5;
             int x2 = widthStep * (int) (x+1) -GAP - 5;
             int y1 = heightStep*4;
             int y2 = heightStep*4-capacityDrawn[x-1];
             canvas.drawRect(x1, y2, x2, y1, drawPaint);
         }
+
         for(int x = 0; x < capacity.length; x++){
             if (Math.abs(capacity[x]-capacityDrawn[x]) < 5){
                 capacityDrawn[x] = capacity[x];
@@ -302,23 +273,14 @@ public class GameRenderer extends View {
             else if (capacity[x] > capacityDrawn[x]){
                 capacityDrawn[x]+=SPEED;
             }
-            //Log.d("Capacity drawn: ", "Capacity drawn" + capacityDrawn[x] + "");
         }
-        //height = ???
+
         drawHighlights();
-        if (!hasWon) { //should you just update?
+        if (!hasWon) {
             h.postDelayed(r, FRAME_RATE);
             invalidate();
         }
-        else{
-            //invalidate();
-        }
-
-    }
-
-    public void fillRect(int jugNumber){
-        double shouldFillPercentage = (double)(scenario.jugs[jugNumber].getMaxCapacity()/maxCapacity); //ie, 0.5 .. now multiply height by 0.5 and only go up that much!
-
+        else{}
 
     }
 

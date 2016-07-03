@@ -1,6 +1,5 @@
 package ca.horatiu.decanting;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.view.GestureDetectorCompat;
@@ -10,8 +9,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.Toast;
-
-import java.io.Serializable;
 
 public class Game extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -46,7 +43,6 @@ public class Game extends AppCompatActivity implements
     @Override
     public boolean onTouchEvent(MotionEvent event){
         this.mDetector.onTouchEvent(event);
-        // Be sure to call the superclass implementation
         return super.onTouchEvent(event);
     }
 
@@ -102,7 +98,6 @@ public class Game extends AppCompatActivity implements
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
-        //single tap here...
         int jug = ((int)event.getX()/(renderer.getWidth()/(numJugs+2)))-1;
 
         if (jug < 0 && (int)event.getY() < renderer.getHeight()/2){

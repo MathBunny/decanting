@@ -42,6 +42,7 @@ public class SolutionSolver {
                             //break bfs;
                         }
                     }
+                    
                     //This is filling in the buckets
                     for(int x = 0; x < temp.arr.length; x++){
                         int tempCapacity = temp.arr[x].getVolume();
@@ -67,8 +68,7 @@ public class SolutionSolver {
                     //now swap, O(a*b time)?
                     for(int a = 0; a < temp.arr.length; a++){
                         for(int b = 0; b < temp.arr.length; b++){
-                            if (a != b){
-                                //pour a in b!
+                            if (a != b){//pour a in b!
                                 int volumeA = temp.arr[a].getVolume();
                                 int volumeB = temp.arr[b].getVolume();
                                 temp.arr[a].pour(temp.arr[b]);
