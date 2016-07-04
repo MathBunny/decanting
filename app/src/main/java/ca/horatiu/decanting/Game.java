@@ -13,13 +13,21 @@ import android.widget.Toast;
 public class Game extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
-
+    /**  String DEBUG_TAG This is the debug tag for all gesture methods */
     private static final String DEBUG_TAG = "Gestures";
+    /** mDetector GestureDetectorCompat This is used for detecting gestures */
     private GestureDetectorCompat mDetector;
+    /** renderer GameRenderer This reference is made to the GameRenderer object, generating the view */
     private GameRenderer renderer;
+    /** int leastMoves This is the least amount of moves that happened */
     private int leastMoves;
-
+    /** int numJugs This is the default count of jugs */
     int numJugs = 4;
+
+    /**
+     * This method sets up the  UI for the activity, and draws the background. It also sets up the gesture detectors and initializes the least move count and renderer.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +44,41 @@ public class Game extends AppCompatActivity implements
         mDetector.setOnDoubleTapListener(this);
     }
 
+    /**
+     * This method returns the least amount of moves.
+     * @return int This is the least amount of moves.
+     */
     public int getLeastMoves(){
         return leastMoves;
     }
 
+    /**
+     * This method is called whenever this is an onTouchEvent.
+     * @param event This is the event reference variable.
+     * @return boolean Indicates if there was a touch event.
+     */
     @Override
     public boolean onTouchEvent(MotionEvent event){
         this.mDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
 
+    /**
+     * This method is called whenever a finger was touched down.
+     * @param event This variable is a reference variable.
+     * @return boolean Indicates if there was a touch event.
+     */
     @Override
     public boolean onDown(MotionEvent event) {
         Log.d(DEBUG_TAG,"onDown: " + event.toString());
         return true;
     }
+    /**
+     * This method is called whenever a fling happened.
+     * @param event1 This variable is a reference variable for the first starting point.
+     * @param event2 This variable is a reference variable for the second end point of the fling.
+     * @return boolean Indicates if there was a fling event.
+     */
 
     @Override
     public boolean onFling(MotionEvent event1, MotionEvent event2,
@@ -58,12 +86,22 @@ public class Game extends AppCompatActivity implements
         Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString());
         return true;
     }
-
+    /**
+     * This method is called whenever a finger was touched down.
+     * @param event This variable is a reference variable.
+     */
     @Override
     public void onLongPress(MotionEvent event) {
         Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
     }
-
+    /**
+     * This method is called whenever a something was scrolled. It is used to fill jugs.
+     * @param e1 This variable is a reference variable for the first starting point.
+     * @param e2 This variable is a reference variable for the second end point of the fling.
+     * @param distanceX This is the distance that changes x wise.
+     * @param distanceY This is the distance that changes y wise.
+     * @return boolean Indicates if there was a fling event.
+     */
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
                             float distanceY) {
@@ -72,29 +110,53 @@ public class Game extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     * This method is called whenever a show press happened.
+     * @param event This is the event reference variable.
+     */
     @Override
     public void onShowPress(MotionEvent event) {
         Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
     }
 
+    /**
+     * This method is called whenever a single tap up happened.
+     * @param event This is the event reference variable.
+     * @return boolean This indicates if the method was ever invoked.
+     */
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
         return true;
     }
 
+    /**
+     * This method is called whenever an object was double tapped.
+     * @param event This is the event reference variable.
+     * @return boolean This indicates if the method was ever invoked.
+     */
     @Override
     public boolean onDoubleTap(MotionEvent event) {
         Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
         return true;
     }
 
+    /**
+     * This method is called whenever something is double tapped.
+     * @param event This is the event reference variable.
+     * @return boolean This indicates if the method was invoked.
+     */
     @Override
     public boolean onDoubleTapEvent(MotionEvent event) {
         Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
         return true;
     }
 
+    /**
+     * This method is called whenever a single tapped occurs. It verifies to see if a toast should appear.
+     * @param event This is the event reference variable, which can provide details such as x and y location.
+     * @return boolean This indicates if the method was invoked.
+     */
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
         Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
@@ -108,6 +170,11 @@ public class Game extends AppCompatActivity implements
         return true;
     }
 
+    /**
+     * This method is invoked when the game is finished. It sends the user to the winner screen.
+     * @param moves This is the number of moves that occured in the game.
+     * @param minimumMoves This is the minimum number of moves neccessary.
+     */
     public void finished(int moves, int minimumMoves){
         Intent playGame = new Intent(this, CompletedLevel.class);
         Moves movesIntent = new Moves(moves, minimumMoves);

@@ -9,14 +9,27 @@ import android.widget.Toast;
 
 import java.util.Arrays;
 
+/**
+ * This class generates custom levels and verifies if they are valid.
+ * @author Horatiu Lazu
+ */
 public class CustomLevelConfiguration extends AppCompatActivity {
 
+    /** This method is called when the activity is called.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_level_configuration);
     }
 
+    /** This method is called on the click of a button.
+     * It reads values from the textboxes and sorts them, then verifies if the level is valid or not.
+     * If it is not valid, then a toast appears.
+     * @param view
+     */
     public void generate(View view){
         int [] arr =  new int[4];
         arr[0] = Integer.parseInt(((EditText)findViewById(R.id.textbox1)).getText().toString());

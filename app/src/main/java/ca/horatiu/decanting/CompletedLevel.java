@@ -6,8 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * This activity encapsulates a completed level, and shows the winner screen.
+ * @author Horatiu Lazu
+ */
 public class CompletedLevel extends AppCompatActivity {
 
+    /**
+     * This method is called when the activity is called. It also gets the move information from an intent. Moreover, it sets the content view so the user can see the visuals.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,11 +24,19 @@ public class CompletedLevel extends AppCompatActivity {
         updateText(moves);
     }
 
+    /**
+     * This method updates the text with the number of moves.
+     * @param moves These are the number of moves, stored in a move object.
+     */
     private void updateText(Moves moves){
         TextView movesMessage = (TextView)findViewById(R.id.textView);
         movesMessage.setText("You finished in " + moves.getMoves() + " moves. Best solution is " + moves.getBestMoves() + " moves.");
     }
 
+    /**
+     * This opens up the level selection screen on the click of a button.
+     * @param view
+     */
     public void levelSelection(View view){
         Intent menu = new Intent(this, LevelSelection.class);
         startActivity(menu);

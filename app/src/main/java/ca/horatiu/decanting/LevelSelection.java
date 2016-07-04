@@ -15,6 +15,10 @@ public class LevelSelection extends AppCompatActivity {
         setContentView(R.layout.activity_level_selection);
     }
 
+    /** This following methods all setup the levels, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelOne(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(3, 2); //lol?

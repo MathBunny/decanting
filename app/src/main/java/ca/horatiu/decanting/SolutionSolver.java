@@ -42,7 +42,7 @@ public class SolutionSolver {
                             //break bfs;
                         }
                     }
-                    
+
                     //This is filling in the buckets
                     for(int x = 0; x < temp.arr.length; x++){
                         int tempCapacity = temp.arr[x].getVolume();
