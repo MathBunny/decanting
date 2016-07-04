@@ -106,7 +106,7 @@ public class SolutionSolverTest { //implement JUnit so it's legit? :-)
     public String toString(){
       StringBuilder ans = new StringBuilder();
       for(int x = 0; x < arr.length; x++){
-        ans.append(arr[x].getVolume() + " "); //don't use +=
+        ans.append(arr[x].getVolume() + " ");
       }
       return ans.toString();
     }

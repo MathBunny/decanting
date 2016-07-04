@@ -40,7 +40,7 @@ public class Scenario implements Serializable {
     }
 
     /** This method returns the target capacity of the level.
-     * @return int This is te target capacity.
+     * @return int This is the target capacity.
      */
     public int getTargetCapacity(){
         return targetCapacity;
