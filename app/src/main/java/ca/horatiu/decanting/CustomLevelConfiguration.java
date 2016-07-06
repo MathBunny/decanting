@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.util.Arrays;
 
 /**
@@ -16,7 +15,6 @@ import java.util.Arrays;
 public class CustomLevelConfiguration extends AppCompatActivity {
 
     /** This method is called when the activity is called.
-     *
      * @param savedInstanceState
      */
     @Override
@@ -60,6 +58,36 @@ public class CustomLevelConfiguration extends AppCompatActivity {
         }
         else{
             Toast.makeText(getApplicationContext(), "This problem is impossible to solve. Please change your parameters and try again.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** This method generates a random level. It uses Math.random() and the solver class.
+     * @param view View This is the view.
+     */
+    public void generateRandom(View view){
+        while(true){
+            int a = (int)(Math.random()*12)+1;
+            int b = (int)(Math.random()*12)+1;
+            int c = (int)(Math.random()*12)+1;
+            int d = (int)(Math.random()*12)+1;
+
+            int target = (int)(Math.random()*12)+1;
+            if (a ==b || a == c || a == d || a == target || b == c || b == d || b == target || c == d || c == target || d == target){ //alternatively use a HashMap
+                continue;
+            }
+            Scenario scenario = new Scenario(4, target);
+            scenario.jugs[0] = new Jug(0, a);
+            scenario.jugs[1] = new Jug(1, b);
+            scenario.jugs[2] = new Jug(2, c);
+            scenario.jugs[3] = new Jug(3, d);
+            SolutionSolver verify = new SolutionSolver(scenario.jugs, target);
+            if (verify.getMinSteps() <= SolutionSolver.MAX_MOVES_PERMITTED && verify.getMinSteps() != -1 && verify.getMinSteps() > 4){
+                Intent playGame = new Intent(this, Game.class);
+                playGame.putExtra("Scenario", scenario);
+                playGame.putExtra("LowestMoveCount", verify.getMinSteps());
+                startActivity(playGame);
+                return;
+            }
         }
     }
 }

@@ -9,6 +9,7 @@
     android:paddingTop="2dp"
     android:background="@drawable/background_grey"
     tools:context="ca.horatiu.decanting.CustomLevelConfiguration">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -150,21 +151,61 @@
 
 
 
+
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Generate Level"
+            android:onClick="generate"
+            android:id="@+id/generateLevel"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+
+            android:layout_toLeftOf="@+id/textbox1"
+            android:layout_toStartOf="@+id/textbox1"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="fill_horizontal|left|bottom"
+            android:layout_columnWeight="1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Random Level"
+            android:onClick="generateRandom"
+
+            android:layout_alignParentBottom="true"
+
+            android:layout_toRightOf="@+id/generateLevel"
+            android:layout_toStartOf="@+id/textbox1"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="fill_horizontal|bottom|right"
+            android:layout_columnWeight="1" />
+
+    </GridLayout>
+</RelativeLayout>
+
+<!-- OLDDDDD
+
+ <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verify and Generate Level"
             android:onClick="generate"
-
+            android:id="@+id/generateLevel"
             android:layout_alignParentBottom="true"
 
             android:layout_toLeftOf="@+id/textbox1"
             android:layout_toStartOf="@+id/textbox1"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true" /> -->
 
-    </RelativeLayout>
-</RelativeLayout>
 <!--
 <TextView
             android:layout_width="wrap_content"

@@ -2,6 +2,7 @@ package ca.horatiu.decanting;
 import java.util.*;
 
 /**
+ * This is a test file only. Same as SolutionSolver.
  * Created by Horatiu on 26/06/2016.
  */
 public class SolutionSolverTest { //implement JUnit so it's legit? :-)

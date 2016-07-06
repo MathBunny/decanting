@@ -4,16 +4,29 @@ import java.util.ArrayDeque;
 import java.util.HashSet;
 
 /**
+ * This class finds the solution to the puzzle.
+ * @author Horatiu Lazu
  * Created by Horatiu on 26/06/2016.
  */
 public class SolutionSolver {
+    /** arr Jug [] These are the jugs. */
     private Jug [] arr;
+    /** target int This is the target capacity. */
     private int target;
+    /** dp HashSet This is used for caching states. */
     private HashSet<String> dp = new HashSet<String>(); //store if this was already considered in Q
+    /** minSteps int This is the minimum number of steps. */
     private int minSteps = -1;
+    /** steps String This is the number of steps. */
     private String steps;
+    /** MAX_MOVES_PERMITTED This is the maximum number of moves permitted to be executed. */
     public static int MAX_MOVES_PERMITTED = 1000;
 
+    /**
+     * This method generates the cache.
+     * @param array Jug [] This is the jug array inputted.
+     * @return String This is the generated cache.
+     */
     private String generateCache(Jug [] array){
         StringBuilder cache = new StringBuilder(); //only noobs do += with Strings :-)
         for(int x = 0; x < array.length; x++)
@@ -21,6 +34,7 @@ public class SolutionSolver {
         return cache.toString();
     }
 
+    /** This method solves the puzzle using a caching top-down BFS algorithm */
     private int solve(){
         //ok now time for magic :-)
         dp.add(generateCache(arr));
@@ -92,11 +106,21 @@ public class SolutionSolver {
         return -1;
     }
 
+    /** This class abstracts a state. */
     static class State{
+        /** arr Jug [] This is the jug array. */
         Jug [] arr;
+        /** actions String This is the string with actions. */
         String actions;
+        /** trace String This is the string storing all the events. */
         String trace;
 
+        /**
+         * This is a class constructor for the State
+         * @param arr Jug [] This is the jug array.
+         * @param actions String These are the actions.
+         * @param trace String This is the trace of events.
+         */
         public State(Jug [] arr, String actions, String trace){
             this.arr = new Jug[arr.length];
             this.actions = actions;
@@ -107,6 +131,10 @@ public class SolutionSolver {
             }
         }
 
+        /**
+         * This class is used for diagnostic purposes to output the state to a string.
+         * @return String This is the state.
+         */
         public String toString(){
             StringBuilder ans = new StringBuilder();
             for(int x = 0; x < arr.length; x++){
@@ -116,14 +144,27 @@ public class SolutionSolver {
         }
     }
 
+    /**
+     * This method returns the minimum number of steps.
+     * @return int This is the minimum number of steps.
+     */
     public int getMinSteps(){
         return minSteps;
     }
 
+    /**
+     * This is the number of steps.
+     * @return int Number of steps.
+     */
     public String getSteps(){
         return steps;
     }
 
+    /**
+     * This is the class constructor for the program.
+     * @param arr Jug [] This is the array.
+     * @param target int This is the target capacity.
+     */
     public SolutionSolver(Jug [] arr, int target){
         this.arr = arr;
         this.target = target;
