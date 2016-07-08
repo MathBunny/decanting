@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class myDatabase extends SQLiteOpenHelper {
 
-    static final String dbName = "myDB";
+    static final String dbName = "highscores";
     static final String tLevels = "DefaultLevels"; //this is for the default levels
     static final String fLevelID = "levelNum";
     static final String fLevelUnLocked = "levelLocked";

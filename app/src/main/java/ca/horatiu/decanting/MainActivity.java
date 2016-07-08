@@ -1,8 +1,10 @@
 package ca.horatiu.decanting;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 /**
@@ -10,7 +12,7 @@ import android.view.View;
  * @author Horatiu Lazu
  */
 public class MainActivity extends AppCompatActivity {
-
+    Intent svc;
     /**
      * This method sets up the content view.
      * @param savedInstanceState
@@ -19,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       // svc=new Intent(this, BackgroundSoundService.class);
+        //startService(svc);
+
+        Log.d("playing", "playing!)");
     }
 
     /** This method does a call to the highscores activity.
@@ -43,5 +50,17 @@ public class MainActivity extends AppCompatActivity {
     public void play(View v){
         Intent levelSelection = new Intent(this, LevelSelection.class);
         startActivity(levelSelection); //open level selection
+    }
+
+    @Override
+    public void onStop(){ //better
+        super.onStop();
+        //stopService(svc);
+    }
+
+    @Override
+    public void onDestroy(){ //better
+        super.onDestroy();
+        //stopService(svc);
     }
 }

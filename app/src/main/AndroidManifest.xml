@@ -34,6 +34,10 @@
             android:name=".CompletedLevel"
             android:screenOrientation="landscape" />
         <activity android:name=".CustomLevelConfiguration"></activity>
+
+        <service
+            android:enabled="true"
+            android:name="ca.horatiu.decanting.BackgroundSoundService" />
     </application>
 
 </manifest>

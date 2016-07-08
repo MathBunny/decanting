@@ -50,7 +50,7 @@ public class SolutionSolver {
                     //verify to see if any are right
                     for(int x = 0; x < temp.arr.length; x++){
                         if (temp.arr[x].getVolume() == target){
-                            System.out.println("Solution: " + temp.actions);
+                            //System.out.println("Solution: " + temp.actions);
                             steps = temp.actions;
                             return moves;
                             //break bfs;

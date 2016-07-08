@@ -19,4 +19,5 @@
     <string name="level_configuration"><u>Level Configuration</u></string>
     <string name="zero">0</string>
     <string name="main_menu"><u>Main Menu</u></string>
+    <string name="highscores"><u>Highscores</u></string>
 </resources>

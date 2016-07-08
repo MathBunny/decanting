@@ -75,13 +75,16 @@ public class CustomLevelConfiguration extends AppCompatActivity {
             if (a ==b || a == c || a == d || a == target || b == c || b == d || b == target || c == d || c == target || d == target){ //alternatively use a HashMap
                 continue;
             }
+            int shouldBeOne = (int)(Math.random()*10)+1; //10% chance of it being a 1
+            if (shouldBeOne != 1)
+                continue;
             Scenario scenario = new Scenario(4, target);
             scenario.jugs[0] = new Jug(0, a);
             scenario.jugs[1] = new Jug(1, b);
             scenario.jugs[2] = new Jug(2, c);
             scenario.jugs[3] = new Jug(3, d);
             SolutionSolver verify = new SolutionSolver(scenario.jugs, target);
-            if (verify.getMinSteps() <= SolutionSolver.MAX_MOVES_PERMITTED && verify.getMinSteps() != -1 && verify.getMinSteps() > 4){
+            if (verify.getMinSteps() <= SolutionSolver.MAX_MOVES_PERMITTED && verify.getMinSteps() != -1 && verify.getMinSteps() >= 5){
                 Intent playGame = new Intent(this, Game.class);
                 playGame.putExtra("Scenario", scenario);
                 playGame.putExtra("LowestMoveCount", verify.getMinSteps());

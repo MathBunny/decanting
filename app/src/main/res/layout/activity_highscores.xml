@@ -10,4 +10,19 @@
     android:background="@drawable/background_grey"
     tools:context="ca.horatiu.decanting.Highscores">
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2196f3"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/highscores"
+            android:id="@+id/textView4"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="center_horizontal" />
+    </GridLayout>
 </RelativeLayout>
