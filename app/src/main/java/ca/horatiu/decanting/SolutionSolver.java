@@ -21,6 +21,8 @@ public class SolutionSolver {
     private String steps;
     /** MAX_MOVES_PERMITTED This is the maximum number of moves permitted to be executed. */
     public static int MAX_MOVES_PERMITTED = 1000;
+    /** MIN_MOVES_REQUIRED int This is the minimum moves required for the level to be generated. */
+    public static int MIN_MOVES_REQUIRED = 5;
 
     /**
      * This method generates the cache.

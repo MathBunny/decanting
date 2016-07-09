@@ -9,10 +9,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/background_grey"
     tools:context="ca.horatiu.decanting.Highscores">
+    <LinearLayout
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:orientation="vertical"
+        >
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,9 +31,468 @@
             android:layout_row="0"
             android:layout_column="0"
             android:layout_gravity="center_horizontal" />
-
-
     </GridLayout>
+
+        <ScrollView android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_row="0"
+                android:layout_column="0">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                    <TextView
+                        android:text="Level"
+                        android:paddingRight="8dp"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Player"
+                        android:minWidth="100px"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2" />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Moves"
+                        android:minWidth="100px"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3" />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Date"
+                        android:minWidth="100px"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4" />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="Performance Rating"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_height="wrap_content"
+                        android:layout_column="5" />
+                </TableRow>
+
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="5 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="2"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="3 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar2"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="4"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+                <!--
+               <TableRow>
+                    <TextView
+                        android:text="Update"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1" />
+
+                   <TextView
+                       android:text="Anonymous"
+                       android:textAppearance="?android:attr/textAppearanceMedium"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_column="2" />
+
+
+                    <EditText
+                        android:width="100px"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        />
+
+                   <Button
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Submit"
+                       android:id="@+id/button"
+                       android:layout_column="4" />
+                </TableRow>
+                -->
+
+
+
+                <!--
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:rating="2"
+                        android:numStars="5"
+                        android:layout_column="2" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"/>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Submit"
+                        android:id="@+id/button"
+                        android:layout_column="2" />
+                </TableRow> -->
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="3 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar33"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="4"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="3 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar3"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="4"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="3 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar4"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="4"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+                <TableRow
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:paddingRight="8dp"
+                        android:text="Level 2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_column="1"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="Anonymous"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:text="3 moves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <TextView
+                        android:paddingLeft="8dp"
+                        android:text="2016/07/15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="4"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ratingBar5"
+                        android:isIndicator="true"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+
+                        android:rating="4"
+                        android:numStars="5"
+                        android:layout_column="5" />
+                </TableRow>
+
+                <!-- STOP -->
+
+
+            </TableLayout>
+        </ScrollView>
+
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

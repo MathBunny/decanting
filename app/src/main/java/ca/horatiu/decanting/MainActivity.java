@@ -2,6 +2,7 @@ package ca.horatiu.decanting;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // svc=new Intent(this, BackgroundSoundService.class);
-        //startService(svc);
-
-        Log.d("playing", "playing!)");
+        SharedPreferences settings = getSharedPreferences("playerName", 0);
+        Game.playerName = settings.getString("playerName", "Anonymous");
+        settings = getSharedPreferences("difficulty", 0);
+        SolutionSolver.MIN_MOVES_REQUIRED = settings.getInt("difficulty",5);
     }
 
     /** This method does a call to the highscores activity.
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
     public void about(View v){
         Intent openAbout = new Intent(this, About.class);
         startActivity(openAbout);
+    }
+
+    /** This method opens settings.
+     * @param v This is the view passed in the onClick event
+     */
+    public void settings(View v){
+        Intent openSettings = new Intent(this, Settings.class);
+        startActivity(openSettings);
     }
 
     /** This method does a call to the level selection activity.

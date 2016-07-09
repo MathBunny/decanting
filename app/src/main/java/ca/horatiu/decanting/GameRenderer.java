@@ -40,7 +40,7 @@ public class GameRenderer extends View {
     private Game game;
     private boolean hasWon = false;
 
-    Stack<Action> undo = new Stack<Action>();
+    Stack<Action> undo = new Stack<>();
 
 
     public GameRenderer(Context context, int numJugs, Scenario scenario) { //numJugs is useless!
@@ -268,7 +268,7 @@ public class GameRenderer extends View {
         drawPaint.setStrokeWidth(1);
         drawPaint.setColor(Color.parseColor("#9e9e9e"));
         int height = getHeight()/2;
-        int widthStep = (width/(numJugs+2)); //sduplicate from method below!
+        int widthStep = (width/(numJugs+2));
         int xCord = 0;
         for(int x = 0; x < numJugs; x++){
             xCord += widthStep;

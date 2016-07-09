@@ -33,6 +33,8 @@ public class Game extends AppCompatActivity implements
     private Scenario levelConfiguration;
     /** int levelNumber This is the level number of the level.*/
     int levelNumber;
+    /** String playerName This is the name of the current playname. */
+    public static String playerName = "Anonymous";
 
     /**
      * This method sets up the  UI for the activity, and draws the background. It also sets up the gesture detectors and initializes the least move count and renderer.
@@ -232,7 +234,6 @@ public class Game extends AppCompatActivity implements
                 renderer.undo();
         }
         else if (jug < 0 && (int)(event.getY()) > renderer.getHeight()/2 && (int)(event.getY()) < renderer.getHeight()){
-            Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
             renderer.undo();
         }
         renderer.tapped((int)event.getX());

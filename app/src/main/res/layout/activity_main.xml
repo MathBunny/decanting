@@ -45,7 +45,8 @@
             android:text="@string/main_menu"
             android:layout_centerHorizontal="true"
             android:textColor="#2196f3"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+
+            android:textSize="@dimen/text_size_large"
             />
 
 
@@ -74,7 +75,21 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Settings"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@+id/highscores"
+            android:layout_alignRight="@+id/highscores"
             android:layout_below="@+id/highscores"
+            android:id="@+id/settings"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:onClick="settings"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/settings"
             android:layout_alignLeft="@+id/highscores"
             android:layout_alignRight="@+id/highscores"
             android:text="@string/about"
