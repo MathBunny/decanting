@@ -26,7 +26,7 @@ public class GameRenderer extends View {
     final int GAP = 20;
     final int TOP_PADDING = 150;
     private Handler h;
-    private final int FRAME_RATE = 2 << 20; //lol.
+    private final int FRAME_RATE = 60;
     private final int SPEED = 5;
     private  Scenario scenario;
     private int maxCapacity;
@@ -98,8 +98,9 @@ public class GameRenderer extends View {
         canvas.drawText(moves + ((moves==1) ? " move" : " moves"), getWidth()-50, TOP_PADDING, drawPaint);
 
         drawPaint.setTextAlign(Paint.Align.LEFT);
-        canvas.drawText(" ?", 50, TOP_PADDING, drawPaint);
-        canvas.drawText("⟲", 50, TOP_PADDING*3, drawPaint);
+        if (game.levelNumber == 1)
+            canvas.drawText(" ?", 50, TOP_PADDING, drawPaint);
+        canvas.drawText("⟲", 50, (game.levelNumber==1) ? (TOP_PADDING*2 + TOP_PADDING/2) : (TOP_PADDING), drawPaint); //*2
 
 
         drawPaint.setTextAlign(Paint.Align.CENTER);

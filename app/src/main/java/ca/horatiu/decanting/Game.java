@@ -31,6 +31,8 @@ public class Game extends AppCompatActivity implements
     int numJugs = 4;
     /** Scenario levelConfiguration This is the level in case the user chooses to play again. */
     private Scenario levelConfiguration;
+    /** int levelNumber This is the level number of the level.*/
+    int levelNumber;
 
     /**
      * This method sets up the  UI for the activity, and draws the background. It also sets up the gesture detectors and initializes the least move count and renderer.
@@ -45,6 +47,7 @@ public class Game extends AppCompatActivity implements
         }
         levelConfiguration = (Scenario)deepClone(scenario);
         leastMoves = (int)getIntent().getSerializableExtra("LowestMoveCount");
+        levelNumber = (int)getIntent().getSerializableExtra("LevelNumber");
         renderer = new GameRenderer(this, numJugs, scenario);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             renderer.setBackground(getResources().getDrawable(R.drawable.background_grey));
@@ -223,7 +226,10 @@ public class Game extends AppCompatActivity implements
         int jug = ((int)event.getX()/(renderer.getWidth()/(numJugs+2)))-1;
 
         if (jug < 0 && (int)event.getY() < renderer.getHeight()/2){
-            Toast.makeText(getApplicationContext(), "Swipe up and down on the jugs to fill and empty, tap the source jug and destination to pour into another. Try to fill one jug to the top capacity.", Toast.LENGTH_LONG).show();
+            if (levelNumber == 1)
+                Toast.makeText(getApplicationContext(), "Swipe up and down on the jugs to fill and empty, tap the source jug and destination to pour into another. Try to fill one jug to the top capacity.", Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
         }
         else if (jug < 0 && (int)(event.getY()) > renderer.getHeight()/2 && (int)(event.getY()) < renderer.getHeight()){
             Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();

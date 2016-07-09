@@ -54,6 +54,7 @@ public class CustomLevelConfiguration extends AppCompatActivity {
             Intent playGame = new Intent(this, Game.class);
             playGame.putExtra("Scenario", scenario);
             playGame.putExtra("LowestMoveCount", verify.getMinSteps());
+            playGame.putExtra("LevelNumber", -1);
             startActivity(playGame);
         }
         else{
@@ -88,6 +89,7 @@ public class CustomLevelConfiguration extends AppCompatActivity {
                 Intent playGame = new Intent(this, Game.class);
                 playGame.putExtra("Scenario", scenario);
                 playGame.putExtra("LowestMoveCount", verify.getMinSteps());
+                playGame.putExtra("LevelNumber", -1);
                 startActivity(playGame);
                 return;
             }

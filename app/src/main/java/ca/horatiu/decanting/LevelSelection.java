@@ -29,6 +29,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 1);
 
         startActivity(playGame);
     }
@@ -42,6 +43,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 2);
 
         startActivity(playGame);
     }
@@ -55,6 +57,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 3);
         startActivity(playGame);
     }
 
@@ -67,6 +70,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 4);
 
         startActivity(playGame);
     }
@@ -80,6 +84,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 5);
         startActivity(playGame);
     }
 
@@ -93,6 +98,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 6);
         startActivity(playGame);
     }
 
@@ -105,6 +111,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 7);
         startActivity(playGame);
     }
 
@@ -118,6 +125,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 8);
         startActivity(playGame);
     }
 
@@ -132,6 +140,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 9);
         startActivity(playGame);
     }
 
@@ -146,6 +155,7 @@ public class LevelSelection extends AppCompatActivity {
 
         playGame.putExtra("Scenario", scenario);
         playGame.putExtra("LowestMoveCount", s.getMinSteps());
+        playGame.putExtra("LevelNumber", 10);
         startActivity(playGame);
     }
 
