@@ -12,6 +12,36 @@ public class HighscoresItem  {
     /** id long This is the ID # of the item. */
     long id;
 
+    String player;
+
+    String date;
+
+    double performanceRating;
+
+    public void setPerformanceRating(double performanceRating){
+        this.performanceRating = performanceRating;
+    }
+
+    public double getPerformanceRating(){
+        return performanceRating;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+
+    public String getDate(){
+        return date;
+    }
+
+    public String getPlayer(){
+        return player;
+    }
+
+    public void setPlayer(String player){
+        this.player = player;
+    }
+
     /**
      * This method sets the moves.
      * @param moves int The new move number.

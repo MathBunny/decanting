@@ -71,7 +71,7 @@ public class CustomLevelConfiguration extends AppCompatActivity {
             int b = (int)(Math.random()*12)+1;
             int c = (int)(Math.random()*12)+1;
             int d = (int)(Math.random()*12)+1;
-            boolean [][][][][] dp = new boolean[13][13][13][13][13];
+            boolean [][][][][] dp = new boolean[13][13][13][13][13]; //efficiency!
 
             int target = (int)(Math.random()*Math.max(Math.max(Math.max(a, b), c), d))+1; //limit range. Impossible to solve otherwise!
             if (a ==b || a == c || a == d || a == target || b == c || b == d || b == target || c == d || c == target || d == target || dp[a][b][c][d][target]){ //alternatively use a HashMap

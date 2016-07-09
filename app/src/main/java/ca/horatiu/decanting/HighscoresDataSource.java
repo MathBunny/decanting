@@ -36,6 +36,9 @@ public class HighscoresDataSource {
         ContentValues values = new ContentValues();
         values.put(HighscoresDB.COLUMN_LEVEL, level); //add the level too?
         values.put(HighscoresDB.COLUMN_MOVES, moves);
+        //new
+        
+
 
         Log.d("null", values.toString());
         long insertId = database.insert(HighscoresDB.TABLE_COMMENTS, null, values);
