@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="retry"
-            android:text="Try Again">
+            android:text="Play Again">
         </Button>
         <Button
             android:id="@+id/levelSelection"

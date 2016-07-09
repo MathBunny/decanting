@@ -98,11 +98,13 @@ public class GameRenderer extends View {
         canvas.drawText(moves + ((moves==1) ? " move" : " moves"), getWidth()-50, TOP_PADDING, drawPaint);
 
         drawPaint.setTextAlign(Paint.Align.LEFT);
-        canvas.drawText("?", 50, TOP_PADDING, drawPaint);
+        canvas.drawText(" ?", 50, TOP_PADDING, drawPaint);
+        canvas.drawText("⟲", 50, TOP_PADDING*3, drawPaint);
+
 
         drawPaint.setTextAlign(Paint.Align.CENTER);
         for(int x =1; x <= numJugs; x++)
-            canvas.drawText(scenario.jugs[x - 1].getMaxCapacity() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height / 2 - 10, drawPaint);
+            canvas.drawText(scenario.jugs[x - 1].getMaxCapacity() + "L", x * (width / (numJugs + 2)) + (width / (numJugs + 2)) / 2, height / 2, drawPaint);
 
         int xPos = (canvas.getWidth() / 2);
         int yPos = TOP_PADDING;
