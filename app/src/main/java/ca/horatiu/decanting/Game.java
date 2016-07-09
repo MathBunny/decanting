@@ -10,6 +10,12 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.Toast;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.*;
+
 public class Game extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
@@ -23,6 +29,8 @@ public class Game extends AppCompatActivity implements
     private int leastMoves;
     /** int numJugs This is the default count of jugs */
     int numJugs = 4;
+    /** Scenario levelConfiguration This is the level in case the user chooses to play again. */
+    private Scenario levelConfiguration;
 
     /**
      * This method sets up the  UI for the activity, and draws the background. It also sets up the gesture detectors and initializes the least move count and renderer.
@@ -32,6 +40,10 @@ public class Game extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Scenario scenario = (Scenario)getIntent().getSerializableExtra("Scenario");
+        for(int x = 0; x < scenario.getJugCount(); x++){
+            scenario.jugs[x].setVolume(0);
+        }
+        levelConfiguration = (Scenario)deepClone(scenario);
         leastMoves = (int)getIntent().getSerializableExtra("LowestMoveCount");
         renderer = new GameRenderer(this, numJugs, scenario);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -40,6 +52,54 @@ public class Game extends AppCompatActivity implements
 
         setContentView(renderer);
 
+        mDetector = new GestureDetectorCompat(this,this);
+        mDetector.setOnDoubleTapListener(this);
+    }
+
+    /**
+     * This method makes a "deep clone" of any object it is given.
+     * @param object Object This is an object reference.
+     */
+    public static Object deepClone(Object object) {
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(object);
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            return ois.readObject();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    public void onResume(){
+        super.onResume();
+        Log.d("RERAN", "RERAN 3");
+    }
+
+    public void onRestart(){
+        super.onRestart();
+        Log.d("RERAN", "RERAN 4");
+    }
+
+    /**
+     * This method resets the fields and the volume, in case the user goes back to play again.
+     */
+    public void onStart(){
+        super.onStart();
+        Log.d("RERAN", "RERAN 2"); //reset
+        for(int x = 0; x < levelConfiguration.getJugCount(); x++){
+            levelConfiguration.jugs[x].setVolume(0);
+        }
+        renderer = new GameRenderer(this, numJugs, levelConfiguration);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            renderer.setBackground(getResources().getDrawable(R.drawable.background_grey));
+        }
+        setContentView(renderer);
         mDetector = new GestureDetectorCompat(this,this);
         mDetector.setOnDoubleTapListener(this);
     }

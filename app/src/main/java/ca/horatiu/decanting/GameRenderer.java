@@ -140,7 +140,7 @@ public class GameRenderer extends View {
         for(int x = 0; x < scenario.jugs.length; x++){
             if (scenario.jugs[x].getVolume() == target){
                 game.finished(moves, game.getLeastMoves()); //temporary!
-                hasWon = true;
+                hasWon = true; //?
                 return;
             }
         }
@@ -175,6 +175,9 @@ public class GameRenderer extends View {
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
+        if (hasWon)
+            return;
+
         this.canvas = canvas;
         updateCapacities();
         drawBackground(canvas);

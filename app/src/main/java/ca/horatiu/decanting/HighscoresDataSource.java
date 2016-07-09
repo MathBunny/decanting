@@ -16,12 +16,12 @@ import java.util.List;
 
 public class HighscoresDataSource {
     private SQLiteDatabase database;
-    private highscoresDB dbHelper;
-    private String[] allColumns = {highscoresDB.COLUMN_LEVEL,
-            highscoresDB.COLUMN_MOVES};
+    private HighscoresDB dbHelper;
+    private String[] allColumns = {HighscoresDB.COLUMN_LEVEL,
+            HighscoresDB.COLUMN_MOVES};
 
     public HighscoresDataSource(Context context){
-        dbHelper = new highscoresDB(context);
+        dbHelper = new HighscoresDB(context);
     }
 
     public void open() throws SQLException {
@@ -34,13 +34,13 @@ public class HighscoresDataSource {
 
     public void addScore(String moves, String level) { //you need a level too?
         ContentValues values = new ContentValues();
-        values.put(highscoresDB.COLUMN_LEVEL, level); //add the level too?
-        values.put(highscoresDB.COLUMN_MOVES, moves);
+        values.put(HighscoresDB.COLUMN_LEVEL, level); //add the level too?
+        values.put(HighscoresDB.COLUMN_MOVES, moves);
 
         Log.d("null", values.toString());
-        long insertId = database.insert(highscoresDB.TABLE_COMMENTS, null, values);
-        Cursor cursor = database.query(highscoresDB.TABLE_COMMENTS,
-                allColumns, highscoresDB.COLUMN_LEVEL + " = " + insertId, null,
+        long insertId = database.insert(HighscoresDB.TABLE_COMMENTS, null, values);
+        Cursor cursor = database.query(HighscoresDB.TABLE_COMMENTS,
+                allColumns, HighscoresDB.COLUMN_LEVEL + " = " + insertId, null,
                 null, null, null);
         cursor.moveToFirst(); //sketchy below.
        // HighscoresItem newComment = cursorToComment(cursor);
@@ -56,7 +56,7 @@ public class HighscoresDataSource {
         List<HighscoresItem> comments = new ArrayList<HighscoresItem>();
 
         //Cursor cursor = database.query(highscoresDB.TABLE_COMMENTS, null, null, null, null, highscoresDB.COLUMN_LEVEL+" DESC", null);
-        Cursor cursor = database.rawQuery("SELECT * FROM HIGHSCORES " + "ORDER BY " + highscoresDB.COLUMN_LEVEL + " ASC, " + highscoresDB.COLUMN_MOVES + " ASC", null);
+        Cursor cursor = database.rawQuery("SELECT * FROM HIGHSCORES " + "ORDER BY " + HighscoresDB.COLUMN_LEVEL + " ASC, " + HighscoresDB.COLUMN_MOVES + " ASC", null);
         //Cursor cursor = database.query(highscoresDB.TABLE_COMMENTS, allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();

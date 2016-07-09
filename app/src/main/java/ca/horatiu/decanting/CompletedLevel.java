@@ -3,6 +3,7 @@ package ca.horatiu.decanting;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import android.widget.TextView;
  * @author Horatiu Lazu
  */
 public class CompletedLevel extends AppCompatActivity {
-
+    boolean once = false;
     /**
      * This method is called when the activity is called. It also gets the move information from an intent. Moreover, it sets the content view so the user can see the visuals.
      * @param savedInstanceState
@@ -40,5 +41,24 @@ public class CompletedLevel extends AppCompatActivity {
     public void levelSelection(View view){
         Intent menu = new Intent(this, LevelSelection.class);
         startActivity(menu);
+    }
+
+    public void retry(View v){
+        onBackPressed();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (!once) {
+            once = true;
+            onBackPressed();
+
+        }
+        Log.d("RERAN", "Going...");
+
+
+        //onBackPressed();
     }
 }

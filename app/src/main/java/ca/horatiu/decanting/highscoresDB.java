@@ -5,10 +5,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
+/** This class acts as a helper class.
+ * @author Horatiu Lazu
  * Created by Horatiu on 05/07/2016.
  */
-public class highscoresDB extends SQLiteOpenHelper {
+public class HighscoresDB extends SQLiteOpenHelper {
     public static final String TABLE_COMMENTS = "HIGHSCORES"; //table name
     public static final String COLUMN_LEVEL = "Level";
     public static final String COLUMN_MOVES = "Moves";
@@ -29,14 +30,12 @@ public class highscoresDB extends SQLiteOpenHelper {
             + ";"
             ; //text not null
 
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DATABASE_CREATE);
     }
 
-    public highscoresDB(Context context) {
+    public HighscoresDB(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -48,7 +47,5 @@ public class highscoresDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_COMMENTS);
         onCreate(db);
-        //db.execSQL(DATABASE_SORT);
-
     }
 }
