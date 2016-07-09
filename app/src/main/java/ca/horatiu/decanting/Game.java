@@ -229,10 +229,11 @@ public class Game extends AppCompatActivity implements
             if (levelNumber == 1)
                 Toast.makeText(getApplicationContext(), "Swipe up and down on the jugs to fill and empty, tap the source jug and destination to pour into another. Try to fill one jug to the top capacity.", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
+                renderer.undo();
         }
         else if (jug < 0 && (int)(event.getY()) > renderer.getHeight()/2 && (int)(event.getY()) < renderer.getHeight()){
             Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
+            renderer.undo();
         }
         renderer.tapped((int)event.getX());
 

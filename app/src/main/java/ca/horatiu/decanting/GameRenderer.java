@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
+import java.util.*;
 
 /**
  * Created by Horatiu on 27/06/2016.
@@ -38,6 +39,9 @@ public class GameRenderer extends View {
     private int target;
     private Game game;
     private boolean hasWon = false;
+
+    Stack<Action> undo = new Stack<Action>();
+
 
     public GameRenderer(Context context, int numJugs, Scenario scenario) { //numJugs is useless!
         super(context);
@@ -70,6 +74,12 @@ public class GameRenderer extends View {
                 if (!highlighted[jug]){ //swap these two :-)
                     for(int y = 0; y < scenario.jugs.length; y++){
                         if (jug != y && highlighted[y]){
+                            undo.push(new Action(y, scenario.jugs[y].getVolume(), jug, scenario.jugs[jug].getVolume()));
+                            /*lastAction = 2;
+                            lastIndex = y;
+                            lastCapacity = scenario.jugs[y].getVolume();
+                            lastIndex2 = jug;
+                            lastCapacity2 = scenario.jugs[jug].getVolume(); //store*/
                             scenario.jugs[y].pour(scenario.jugs[jug]);
                             highlighted[y] = false;
                             moves++;
@@ -139,6 +149,17 @@ public class GameRenderer extends View {
         }
     }
 
+    public void undo(){
+        if (undo.isEmpty())
+            return;
+        moves--;
+        Action temp = undo.pop();
+        scenario.jugs[temp.getFirstIndex()].setVolume(temp.getFirstCapacity());
+        if (temp.getSecondIndex() != -1){
+            scenario.jugs[temp.getSecondIndex()].setVolume(temp.getSecondCapacity());
+        }
+    }
+
     public void verifyIfWon(){
         for(int x = 0; x < scenario.jugs.length; x++){
             if (scenario.jugs[x].getVolume() == target){
@@ -154,12 +175,20 @@ public class GameRenderer extends View {
         if (jug >= 0 && jug < numJugs && y > getHeight()/4){
             if (dy > 0){ //swipe up!
                 if (scenario.jugs[jug].getVolume() != scenario.jugs[jug].getMaxCapacity()) {
+                    undo.push(new Action(jug, scenario.jugs[jug].getVolume()));
+                    /*lastAction = 1;
+                    lastIndex = jug;
+                    lastCapacity = scenario.jugs[jug].getVolume();*/
                     scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
                     moves++;
                 }
             }
             else{
                 if (scenario.jugs[jug].getVolume() != 0) {
+                    undo.push(new Action(jug, scenario.jugs[jug].getVolume()));
+                    /*lastAction = 1;
+                    lastIndex = jug;
+                    lastCapacity = scenario.jugs[jug].getVolume();*/
                     scenario.jugs[jug].setVolume(0);
                     moves++;
                 }
