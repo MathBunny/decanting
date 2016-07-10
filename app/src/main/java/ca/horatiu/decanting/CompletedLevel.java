@@ -29,7 +29,7 @@ public class CompletedLevel extends AppCompatActivity {
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date();
-        double score = Math.max(0, 5-(moves.getMoves() - moves.getBestMoves())/Math.min(moves.getBestMoves(), 3));
+        double score = Math.max(0, 5-(double)(moves.getMoves() - moves.getBestMoves())/Math.min(moves.getBestMoves(), 3));
         //MainActivity.highscores.getDatasource().addScore(moves.getMoves() + "", levelNumber, dateFormat.format(date), score + ""); //addScore(String moves, String level, String date, String performance)
         Highscores.toAdd.push(new HighscoresItem(moves.getMoves(), levelNumber, dateFormat.format(date), score, Game.playerName));
     }

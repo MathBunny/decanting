@@ -50,6 +50,8 @@ public class Highscores extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 // Do nothing but close the dialog
                 datasource.reset();
+                finish();
+                startActivity(getIntent());
                 dialog.dismiss();
             }
         });
@@ -58,7 +60,6 @@ public class Highscores extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 // Do nothing
                 dialog.dismiss();
             }
@@ -156,6 +157,9 @@ public class Highscores extends AppCompatActivity {
             rating.setNumStars(5);
             rating.setRating((float)a.getPerformanceRating());
             rating.setLayoutParams(new TableRow.LayoutParams(5));
+            rating.setIsIndicator(true);
+            rating.setFocusable(false);
+            rating.setFocusableInTouchMode(false);
 
             /* Add Button to row. */
             tr.addView(levelInfo);
