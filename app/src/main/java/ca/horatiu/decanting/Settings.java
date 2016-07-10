@@ -27,6 +27,11 @@ public class Settings extends AppCompatActivity {
         editor.commit();
     }
 
+    public void clearDB(View v){
+
+        
+    }
+
 
     public void adjustDifficulty(View v){
         try{

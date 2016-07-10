@@ -247,10 +247,11 @@ public class Game extends AppCompatActivity implements
      * @param minimumMoves This is the minimum number of moves neccessary.
      */
     public void finished(int moves, int minimumMoves){
-        Intent playGame = new Intent(this, CompletedLevel.class);
+        Intent completedGame = new Intent(this, CompletedLevel.class);
         Moves movesIntent = new Moves(moves, minimumMoves);
-        playGame.putExtra("Moves", movesIntent);
-        startActivity(playGame);
+        completedGame.putExtra("Moves", movesIntent);
+        completedGame.putExtra("LevelNumber", levelNumber);
+        startActivity(completedGame);
     }
 
 }

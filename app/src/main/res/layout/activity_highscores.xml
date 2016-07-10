@@ -36,6 +36,7 @@
         <ScrollView android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TableLayout
+                android:id="@+id/table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_row="0"
@@ -90,7 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_column="5" />
                 </TableRow>
-
+                <!--
                 <TableRow
                     android:gravity="center_vertical">
 
@@ -100,9 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
                         android:paddingLeft="8dp"
@@ -111,8 +110,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
                         android:paddingLeft="8dp"
@@ -121,8 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
                         android:paddingLeft="8dp"
@@ -130,8 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_column="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <RatingBar
                         android:layout_width="wrap_content"
@@ -198,293 +194,11 @@
                         android:focusableInTouchMode="false"
                         android:focusable="false"
 
-                        android:rating="4"
+                        android:rating="3.7"
                         android:numStars="5"
                         android:layout_column="5" />
                 </TableRow>
-                <!--
-               <TableRow>
-                    <TextView
-                        android:text="Update"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="1" />
-
-                   <TextView
-                       android:text="Anonymous"
-                       android:textAppearance="?android:attr/textAppearanceMedium"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_column="2" />
-
-
-                    <EditText
-                        android:width="100px"
-
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        />
-
-                   <Button
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="Submit"
-                       android:id="@+id/button"
-                       android:layout_column="4" />
-                </TableRow>
-                -->
-
-
-
-                <!--
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:rating="2"
-                        android:numStars="5"
-                        android:layout_column="2" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"/>
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Submit"
-                        android:id="@+id/button"
-                        android:layout_column="2" />
-                </TableRow> -->
-                <TableRow
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:paddingRight="8dp"
-                        android:text="Level 2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_column="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="Anonymous"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="3 moves"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:text="2016/07/15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar33"
-                        android:isIndicator="true"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
-                        android:focusable="false"
-
-                        android:rating="4"
-                        android:numStars="5"
-                        android:layout_column="5" />
-                </TableRow>
-                <TableRow
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:paddingRight="8dp"
-                        android:text="Level 2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_column="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="Anonymous"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="3 moves"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:text="2016/07/15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar3"
-                        android:isIndicator="true"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
-                        android:focusable="false"
-
-                        android:rating="4"
-                        android:numStars="5"
-                        android:layout_column="5" />
-                </TableRow>
-                <TableRow
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:paddingRight="8dp"
-                        android:text="Level 2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_column="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="Anonymous"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="3 moves"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:text="2016/07/15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar4"
-                        android:isIndicator="true"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
-                        android:focusable="false"
-
-                        android:rating="4"
-                        android:numStars="5"
-                        android:layout_column="5" />
-                </TableRow>
-                <TableRow
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:paddingRight="8dp"
-                        android:text="Level 2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:layout_column="1"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="Anonymous"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="2"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:paddingRight="8dp"
-                        android:text="3 moves"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="3"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <TextView
-                        android:paddingLeft="8dp"
-                        android:text="2016/07/15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_column="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        />
-
-                    <RatingBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ratingBar5"
-                        android:isIndicator="true"
-                        android:clickable="false"
-                        android:focusableInTouchMode="false"
-                        android:focusable="false"
-
-                        android:rating="4"
-                        android:numStars="5"
-                        android:layout_column="5" />
-                </TableRow>
-
-                <!-- STOP -->
+               -->
 
 
             </TableLayout>

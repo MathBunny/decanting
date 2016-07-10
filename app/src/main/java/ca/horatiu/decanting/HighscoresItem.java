@@ -18,6 +18,20 @@ public class HighscoresItem  {
 
     double performanceRating;
 
+    //MainActivity.highscores.getDatasource().addScore(moves.getMoves() + "", levelNumber, dateFormat.format(date), score + "");
+
+    public HighscoresItem(int moves, int level, String date, double performanceRating, String player){
+        this.moves =  moves;
+        this.level = level;
+        this.date = date;
+        this.performanceRating = performanceRating;
+        this.player = player;
+    }
+
+    public HighscoresItem(){
+
+    }
+
     public void setPerformanceRating(double performanceRating){
         this.performanceRating = performanceRating;
     }

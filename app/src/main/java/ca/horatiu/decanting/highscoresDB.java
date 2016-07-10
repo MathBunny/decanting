@@ -13,6 +13,9 @@ public class HighscoresDB extends SQLiteOpenHelper {
     public static final String TABLE_COMMENTS = "HIGHSCORES"; //table name
     public static final String COLUMN_LEVEL = "Level";
     public static final String COLUMN_MOVES = "Moves";
+    public static final String COLUMN_PLAYER = "Player";
+    public static final String COLUMN_DATE = "Date";
+    public static final String COLUMN_RATING = "Rating";
     public static final String COLUMN_ROW_NUMBER = "Row";
 
     private static final String DATABASE_NAME = "highscores.db";
@@ -25,6 +28,12 @@ public class HighscoresDB extends SQLiteOpenHelper {
             + " INTEGER AUTO_INCREMENT, "
             + COLUMN_LEVEL
             + " INTEGER, "
+            + COLUMN_DATE
+            + " TEXT, "
+            + COLUMN_PLAYER
+            + " TEXT, "
+            + COLUMN_RATING
+            + " FLOAT, "
             + COLUMN_MOVES
             + " INTEGER )" //+ DATABASE_SORT
             + ";"

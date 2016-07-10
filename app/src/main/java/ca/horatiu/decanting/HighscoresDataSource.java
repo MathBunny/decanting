@@ -25,6 +25,10 @@ public class HighscoresDataSource {
     }
 
     public void open() throws SQLException {
+        if (dbHelper == null)
+            Log.d("ERROR", "NULL!!");
+        else
+            Log.d("SHOULD BE OK!", "Ok!");
         database = dbHelper.getWritableDatabase();
     }
 
@@ -32,12 +36,22 @@ public class HighscoresDataSource {
         dbHelper.close();
     }
 
-    public void addScore(String moves, String level) { //you need a level too?
+    public void addScore(String moves, String level, String date, String performance, String name) { //you need a level too?
+        if (database == null)
+            open();
         ContentValues values = new ContentValues();
         values.put(HighscoresDB.COLUMN_LEVEL, level); //add the level too?
-        values.put(HighscoresDB.COLUMN_MOVES, moves);
+
         //new
-        
+        values.put(HighscoresDB.COLUMN_DATE, date); //add the new fields :-)
+
+
+
+        values.put(HighscoresDB.COLUMN_PLAYER, name); //Game.playerName
+        values.put(HighscoresDB.COLUMN_RATING, performance);
+
+        values.put(HighscoresDB.COLUMN_MOVES, moves); //old
+
 
 
         Log.d("null", values.toString());
@@ -75,14 +89,19 @@ public class HighscoresDataSource {
 
     public void reset(){
         //db = new
-        dbHelper.onUpgrade(database, 1, 2); //not db!
+        dbHelper.onUpgrade(database, 2, 3); //not db!
     }
 
     private HighscoresItem cursorToComment(Cursor cursor) {
         HighscoresItem item = new HighscoresItem();
         item.setLevel(cursor.getInt(1));
         //item.setId(cursor.getLong(0)); //1 & 2
-        item.setMoves(Integer.parseInt(cursor.getString(2)));
+        Log.d("COMMENT", cursor.getString(2));
+
+        item.setDate(cursor.getString(2));
+        item.setPlayer(cursor.getString(3));
+        item.setPerformanceRating(Double.parseDouble(cursor.getString(4)));
+        item.setMoves(Integer.parseInt(cursor.getString(5)));
         return item;
     }
 }

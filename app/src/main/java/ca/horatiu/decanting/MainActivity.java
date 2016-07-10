@@ -14,6 +14,8 @@ import android.view.View;
  */
 public class MainActivity extends AppCompatActivity {
     Intent svc;
+    static Highscores highscores = new Highscores();
+
     /**
      * This method sets up the content view.
      * @param savedInstanceState
