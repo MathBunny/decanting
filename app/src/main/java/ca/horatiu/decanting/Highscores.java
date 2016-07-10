@@ -3,11 +3,13 @@ package ca.horatiu.decanting;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.database.sqlite.*;
 import android.os.Bundle;
@@ -35,6 +37,36 @@ public class Highscores extends AppCompatActivity {
 
     public HighscoresDataSource getDatasource(){
         return datasource;
+    }
+
+    public void resetDB(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirm");
+        builder.setMessage("Are you sure you want to clear highscores?");
+
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                datasource.reset();
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     public Highscores(){}
@@ -73,7 +105,7 @@ public class Highscores extends AppCompatActivity {
 
             TextView levelInfo = new TextView(this);
             levelInfo.setText("Level " + a.getLevel());
-            levelInfo.setPadding(0, 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0);
+            levelInfo.setPadding(0, 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
             if (Build.VERSION.SDK_INT < 23) {
                 levelInfo.setTextAppearance(getApplicationContext(), android.R.style.TextAppearance_Material_Medium);
             } else {
@@ -86,8 +118,8 @@ public class Highscores extends AppCompatActivity {
 
 
             TextView playerInfo = new TextView(this);
-            playerInfo.setText((a.getPlayer().length() >= 9) ? (a.getPlayer().substring(10)) : (a.getPlayer()));
-            playerInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0);
+            playerInfo.setText((a.getPlayer().length() >= 9) ? (a.getPlayer().substring(0, 9)) : (a.getPlayer()));
+            playerInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
             playerInfo.setLayoutParams(new TableRow.LayoutParams(2));
 
             if (Build.VERSION.SDK_INT < 23) {
@@ -98,7 +130,7 @@ public class Highscores extends AppCompatActivity {
 
             TextView movesInfo = new TextView(this);
             movesInfo.setText(a.getMoves() + ((a.getMoves() == 1) ? (" move") : (" moves")));
-            movesInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0);
+            movesInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
             movesInfo.setLayoutParams(new TableRow.LayoutParams(3));
 
             if (Build.VERSION.SDK_INT < 23) {
@@ -109,7 +141,7 @@ public class Highscores extends AppCompatActivity {
 
             TextView dateInfo = new TextView(this);
             dateInfo.setText(a.getDate());
-            dateInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0);
+            dateInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
             dateInfo.setLayoutParams(new TableRow.LayoutParams(4));
 
             if (Build.VERSION.SDK_INT < 23) {
