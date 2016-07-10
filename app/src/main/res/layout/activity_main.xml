@@ -52,6 +52,8 @@
 
         <Button
             android:layout_above="@+id/highscores"
+
+            android:background="@drawable/roundshapebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/highscores"
@@ -59,9 +61,12 @@
             android:text="@string/play_now"
             android:id="@+id/play"
             android:onClick="play"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp" />
 
         <Button
+            android:background="@drawable/roundshapebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="High Scores"
@@ -70,9 +75,13 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:onClick="highscores"
-            />
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp" />
 
         <Button
+            android:background="@drawable/roundshapebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Settings"
@@ -84,14 +93,21 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:onClick="settings"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
             />
 
         <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/settings"
             android:layout_alignLeft="@+id/highscores"
             android:layout_alignRight="@+id/highscores"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/roundshapebtn"
+
             android:text="@string/about"
             android:id="@+id/button3"
             android:onClick="about" />

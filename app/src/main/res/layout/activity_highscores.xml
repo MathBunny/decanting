@@ -59,6 +59,7 @@
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
                     <TextView
+                        android:textColor="#0d47a1"
                         android:text="Level"
                         android:paddingRight="5dp"
                         android:layout_width="wrap_content"
@@ -67,6 +68,7 @@
                         android:layout_column="1" />
 
                     <TextView
+                        android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="Player"
@@ -77,6 +79,7 @@
                         android:layout_column="2" />
 
                     <TextView
+                        android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="Moves"
@@ -87,6 +90,7 @@
                         android:layout_column="3" />
 
                     <TextView
+                        android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="Date"
@@ -97,6 +101,7 @@
                         android:layout_column="4" />
 
                     <TextView
+                        android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:text="Performance Rating"
                         android:layout_width="wrap_content"

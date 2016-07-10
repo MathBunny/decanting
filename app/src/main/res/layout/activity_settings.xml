@@ -39,6 +39,11 @@
             android:layout_gravity="fill_horizontal|right" />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:paddingLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,6 +77,11 @@
             android:numeric="integer" />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:paddingLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

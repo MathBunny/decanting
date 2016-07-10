@@ -23,11 +23,17 @@
             android:text="@string/level_selection"
             android:textColor="#2196f3"
             android:id="@+id/title"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="@dimen/text_size_large"
             android:textAppearance="?android:attr/textAppearanceLarge"
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
@@ -38,6 +44,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/three"
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
@@ -49,6 +60,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/four"
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
@@ -60,6 +76,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toLeftOf="@+id/three"
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
@@ -71,6 +92,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toLeftOf="@+id/two"
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
@@ -83,6 +109,11 @@
 
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_alignLeft="@+id/one"
             android:layout_alignRight="@+id/one"
             android:layout_below="@+id/one"
@@ -94,6 +125,11 @@
             android:layout_centerHorizontal="true" />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/six"
 
             android:layout_below="@+id/one"
@@ -108,6 +144,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/six"
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
@@ -121,6 +162,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/seven"
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
@@ -134,6 +180,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/eight"
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
@@ -147,6 +198,11 @@
             />
 
         <Button
+            android:background="@drawable/roundshapebtn"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
