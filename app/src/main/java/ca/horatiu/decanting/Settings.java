@@ -23,13 +23,13 @@ public class Settings extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences("playerName", 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putString("difficulty", Game.playerName);
+        editor.putString("playerName", Game.playerName);
         editor.commit();
     }
 
     public void clearDB(View v){
-
-        
+        HighscoresDataSource dS = new HighscoresDataSource(this);
+        dS.reset();
     }
 
 

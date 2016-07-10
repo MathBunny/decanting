@@ -86,7 +86,7 @@ public class Highscores extends AppCompatActivity {
 
 
             TextView playerInfo = new TextView(this);
-            playerInfo.setText(a.getPlayer());
+            playerInfo.setText((a.getPlayer().length() >= 9) ? (a.getPlayer().substring(10)) : (a.getPlayer()));
             playerInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics()), 0);
             playerInfo.setLayoutParams(new TableRow.LayoutParams(2));
 
