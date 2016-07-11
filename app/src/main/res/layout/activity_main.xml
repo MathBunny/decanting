@@ -12,30 +12,6 @@
     android:background="@drawable/background_grey"
     tools:context="ca.horatiu.decanting.MainActivity">
 
-    <!-- <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:text="Play Now!"
-        android:id="@+id/play"
-        android:layout_centerHorizontal="true"
-        android:layout_weight="1"
-        android:onClick="play"
-        />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/play"
-        android:text="High Scores"
-        android:layout_weight="1" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/play"
-        android:text="About"
-        android:layout_weight="1" /> -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,10 +21,7 @@
             android:text="@string/main_menu"
             android:layout_centerHorizontal="true"
             android:textColor="#2196f3"
-
-            android:textSize="@dimen/text_size_large"
-            />
-
+            android:textSize="@dimen/text_size_large" />
 
         <Button
             android:layout_above="@+id/highscores"
@@ -69,7 +42,7 @@
             android:background="@drawable/roundshapebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="High Scores"
+            android:text="@string/high_scores"
             android:layout_centerHorizontal="true"
             android:id="@+id/highscores"
             android:layout_centerVertical="true"
@@ -84,7 +57,7 @@
             android:background="@drawable/roundshapebtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings"
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@+id/highscores"
             android:layout_alignRight="@+id/highscores"
@@ -94,11 +67,9 @@
             android:layout_gravity="center_horizontal"
             android:onClick="settings"
             android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"
-            />
+            android:layout_marginBottom="3dp" />
 
         <Button
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/settings"
@@ -116,14 +87,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/highscores"
-            android:src="@drawable/water_jug"
-            />
+            android:src="@drawable/water_jug" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/highscores"
-            android:src="@drawable/empty_jug"
-            />
+            android:src="@drawable/empty_jug" />
     </RelativeLayout>
 </LinearLayout>

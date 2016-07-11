@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import java.io.Serializable;
+/**
+ * This class does the level selection and holds the levels.
+ * @author Horatiu Lazu
+ */
 
 public class LevelSelection extends AppCompatActivity {
 
@@ -15,7 +18,7 @@ public class LevelSelection extends AppCompatActivity {
         setContentView(R.layout.activity_level_selection);
     }
 
-    /** This following methods all setup the levels, by using Scenarios and using intents
+    /** This following method setups up the level, by using Scenarios and using intents
      * It sets up a basic level using the scenario object and then starts the activity.
      * @param view This is just for a normal onClick event
      */
@@ -34,6 +37,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelTwo(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(2, 4); //lol?
@@ -48,6 +55,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelThree(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(2, 4); //lol?
@@ -61,6 +72,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelFour(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(2, 5); //lol?
@@ -75,6 +90,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelFive(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(2, 8); //lol?
@@ -88,6 +107,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelSix(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(3, 11); //lol?
@@ -102,6 +125,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelSeven(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(2, 4); //lol?
@@ -115,6 +142,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelEight(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(3, 11); //lol?
@@ -129,6 +160,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelNine(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(4, 19); //lol?
@@ -144,6 +179,10 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method setups up the level, by using Scenarios and using intents
+     * It sets up a basic level using the scenario object and then starts the activity.
+     * @param view This is just for a normal onClick event
+     */
     public void levelTen(View view){
         Intent playGame = new Intent(this, Game.class);
         Scenario scenario = new Scenario(4, 21); //lol?
@@ -159,12 +198,19 @@ public class LevelSelection extends AppCompatActivity {
         startActivity(playGame);
     }
 
+    /** This following method goes back to the main menu whenever the back button is pressed instead of potentially a level.
+     */
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+
+    /**
+     * This method opens up the custom level view activity.
+     * @param view View This is a view reference.
+     */
     public void customLevel(View view){
         Intent customLevelConfigurator = new Intent(this, CustomLevelConfiguration.class);
         startActivity(customLevelConfigurator);

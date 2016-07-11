@@ -1,44 +1,35 @@
 package ca.horatiu.decanting;
 
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.database.sqlite.*;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
+/**
+ * This class handles highscores and draws them with a nice UI.
+ * @author Horatiu Lazu
+ */
+
 public class Highscores extends AppCompatActivity {
+    /** datasource HighscoresDataSource This is used to link with the SQLite database. */
     private HighscoresDataSource datasource = new HighscoresDataSource(this);
+    /** This variable is used to add items to the SQLite database from other locations. */
     public static Stack<HighscoresItem> toAdd = new Stack<>();
-    public static int [] MIN_MOVES_SOLUTIONS = new int [] {2, 6, 10, 12, 14, 10, 18, 13, 5, 9};
 
-    public HighscoresDataSource getDatasource(){
-        return datasource;
-    }
-
+    /**
+     * This method resets the database, with a confirmation message box.
+     * @param view View This is a view reference.
+     */
     public void resetDB(View view){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -72,38 +63,48 @@ public class Highscores extends AppCompatActivity {
 
     public Highscores(){}
 
+    /**
+     * This method sets up the UI and adds the table rows from the SQLite database.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_highscores);
 
+        /* Setup a table and open the SQLite database */
         TableLayout table = (TableLayout) findViewById(R.id.table);
-
-
         datasource = new HighscoresDataSource(this);
         datasource.open();
 
-        //datasource.reset();
+        /* Add the scores from the stack to the database */
         while(!toAdd.isEmpty()){
             HighscoresItem temp = toAdd.pop();
-            datasource.addScore(temp.getMoves() + "", temp.getLevel() + "", temp.getDate() + "", temp.getPerformanceRating() + "", temp.getPlayer() + "");
+            try {
+                datasource.addScore(temp.getMoves() + "", temp.getLevel() + "", temp.getDate() + "", temp.getPerformanceRating() + "", temp.getPlayer() + "");
+            }
+            catch(Exception e){
+                datasource.reset();
+                datasource.create();
+                Log.d("Created", "Created)");
+                datasource.addScore(temp.getMoves() + "", temp.getLevel() + "", temp.getDate() + "", temp.getPerformanceRating() + "", temp.getPlayer() + "");
+            }
         }
-        //datasource.addScore("32", "1", "2016/09/09", "4.5");
-        /*datasource.reset();
-        datasource.addScore("15", "1");
-        datasource.addScore("7", "3");
-        datasource.addScore("16", "3");
-        datasource.addScore("2", "3");
-        datasource.addScore("16", "4");
-        datasource.addScore("16", "2");*/
 
+        //This is in case there was no DB created.
+        try{
+            datasource.getAllRecords();
+        }
+        catch(Exception e){datasource.create();}
+
+        /* Create a row for each entry */
         for(HighscoresItem a : datasource.getAllRecords()) {
-            Log.d("Moves: ", " Level: " + a.getLevel() + " | Moves: " + a.getMoves() + " |Date: " + a.getDate() + " | Score:" + a.getPerformanceRating() + "| Name: " + a.getPlayer());
             TableRow tr = new TableRow(this);
             tr.setGravity(Gravity.CENTER_VERTICAL);
 
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
+            /* Add the level number */
             TextView levelInfo = new TextView(this);
             levelInfo.setText("Level " + a.getLevel());
             levelInfo.setPadding(0, 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
@@ -112,12 +113,9 @@ public class Highscores extends AppCompatActivity {
             } else {
                 levelInfo.setTextAppearance(android.R.style.TextAppearance_Material_Medium);
             }
-
-            //levelInfo.setTextAppearance(R.style.AppTheme);
             levelInfo.setLayoutParams(new TableRow.LayoutParams(1));
-            //levelInfo.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
 
-
+            /* Add the player name */
             TextView playerInfo = new TextView(this);
             playerInfo.setText((a.getPlayer().length() >= 9) ? (a.getPlayer().substring(0, 9)) : (a.getPlayer()));
             playerInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
@@ -129,6 +127,7 @@ public class Highscores extends AppCompatActivity {
                 playerInfo.setTextAppearance(android.R.style.TextAppearance_Material_Medium);
             }
 
+            /* Add the number of moves */
             TextView movesInfo = new TextView(this);
             movesInfo.setText(a.getMoves() + ((a.getMoves() == 1) ? (" move") : (" moves")));
             movesInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
@@ -140,6 +139,7 @@ public class Highscores extends AppCompatActivity {
                 movesInfo.setTextAppearance(android.R.style.TextAppearance_Material_Medium);
             }
 
+            /* Add the date label */
             TextView dateInfo = new TextView(this);
             dateInfo.setText(a.getDate());
             dateInfo.setPadding((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0, (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 5, getResources().getDisplayMetrics()), 0);
@@ -151,8 +151,7 @@ public class Highscores extends AppCompatActivity {
                 dateInfo.setTextAppearance(android.R.style.TextAppearance_Material_Medium);
             }
 
-           // playerInfo.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-
+            /* Add the rating bar */
             RatingBar rating = new RatingBar(this);
             rating.setNumStars(5);
             rating.setRating((float)a.getPerformanceRating());
@@ -168,13 +167,8 @@ public class Highscores extends AppCompatActivity {
             tr.addView(dateInfo);
             tr.addView(rating);
             /* Add row to TableLayout. */
-            //tr.setBackgroundResource(R.drawable.sf_gradient_03);
             table.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
         }
 
-    }
-
-    private void resetScores(){
-        datasource.reset();
     }
 }

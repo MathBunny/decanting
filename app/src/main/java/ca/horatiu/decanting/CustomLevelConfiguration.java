@@ -63,6 +63,7 @@ public class CustomLevelConfiguration extends AppCompatActivity {
     }
 
     /** This method generates a random level. It uses Math.random() and the solver class.
+     * To prevent recomputing the same level it uses a 5 dimensional caching array as well.
      * @param view View This is the view.
      */
     public void generateRandom(View view){

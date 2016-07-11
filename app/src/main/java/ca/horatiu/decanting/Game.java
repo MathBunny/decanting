@@ -14,7 +14,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.*;
+
+/**
+ * This class handles the game. This includes gestures and touches on the main game screen.
+ * @author Horatiu Lazu
+ */
 
 public class Game extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
@@ -80,15 +84,19 @@ public class Game extends AppCompatActivity implements
         }
     }
 
-
+    /**
+     * This method is for resuming the game (activity's lifecycle).
+     */
     public void onResume(){
         super.onResume();
         Log.d("RERAN", "RERAN 3");
     }
 
+    /**
+     * This method is called when the activity is reset.
+     */
     public void onRestart(){
         super.onRestart();
-        Log.d("RERAN", "RERAN 4");
     }
 
     /**
@@ -96,7 +104,6 @@ public class Game extends AppCompatActivity implements
      */
     public void onStart(){
         super.onStart();
-        Log.d("RERAN", "RERAN 2"); //reset
         for(int x = 0; x < levelConfiguration.getJugCount(); x++){
             levelConfiguration.jugs[x].setVolume(0);
         }
@@ -146,9 +153,7 @@ public class Game extends AppCompatActivity implements
      */
 
     @Override
-    public boolean onFling(MotionEvent event1, MotionEvent event2,
-                           float velocityX, float velocityY) {
-        Log.d(DEBUG_TAG, "onFling: " + event1.toString()+event2.toString());
+    public boolean onFling(MotionEvent event1, MotionEvent event2, float velocityX, float velocityY) {
         return true;
     }
     /**
@@ -156,9 +161,7 @@ public class Game extends AppCompatActivity implements
      * @param event This variable is a reference variable.
      */
     @Override
-    public void onLongPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onLongPress: " + event.toString());
-    }
+    public void onLongPress(MotionEvent event) {}
     /**
      * This method is called whenever a something was scrolled. It is used to fill jugs.
      * @param e1 This variable is a reference variable for the first starting point.
@@ -168,10 +171,8 @@ public class Game extends AppCompatActivity implements
      * @return boolean Indicates if there was a fling event.
      */
     @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-                            float distanceY) {
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
         renderer.gesture((int)e1.getX(), (int)e1.getY(), (int)distanceX, (int)distanceY);
-        Log.d(DEBUG_TAG, "onScroll: " + e1.toString()+e2.toString());
         return true;
     }
 
@@ -180,9 +181,7 @@ public class Game extends AppCompatActivity implements
      * @param event This is the event reference variable.
      */
     @Override
-    public void onShowPress(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onShowPress: " + event.toString());
-    }
+    public void onShowPress(MotionEvent event) {}
 
     /**
      * This method is called whenever a single tap up happened.
@@ -191,7 +190,6 @@ public class Game extends AppCompatActivity implements
      */
     @Override
     public boolean onSingleTapUp(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapUp: " + event.toString());
         return true;
     }
 
@@ -202,7 +200,6 @@ public class Game extends AppCompatActivity implements
      */
     @Override
     public boolean onDoubleTap(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTap: " + event.toString());
         return true;
     }
 
@@ -213,7 +210,6 @@ public class Game extends AppCompatActivity implements
      */
     @Override
     public boolean onDoubleTapEvent(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onDoubleTapEvent: " + event.toString());
         return true;
     }
 
@@ -224,7 +220,6 @@ public class Game extends AppCompatActivity implements
      */
     @Override
     public boolean onSingleTapConfirmed(MotionEvent event) {
-        Log.d(DEBUG_TAG, "onSingleTapConfirmed: " + event.toString());
         int jug = ((int)event.getX()/(renderer.getWidth()/(numJugs+2)))-1;
 
         if (jug < 0 && (int)event.getY() < renderer.getHeight()/2){
@@ -236,8 +231,8 @@ public class Game extends AppCompatActivity implements
         else if (jug < 0 && (int)(event.getY()) > renderer.getHeight()/2 && (int)(event.getY()) < renderer.getHeight()){
             renderer.undo();
         }
-        renderer.tapped((int)event.getX());
 
+        renderer.tapped((int)event.getX());
         return true;
     }
 

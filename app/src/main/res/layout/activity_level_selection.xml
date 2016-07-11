@@ -24,8 +24,7 @@
             android:textColor="#2196f3"
             android:id="@+id/title"
             android:textSize="@dimen/text_size_large"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -33,15 +32,13 @@
             android:layout_marginBottom="3dp"
             android:layout_marginRight="3dp"
             android:layout_marginLeft="3dp"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
-            android:text="LEVEL THREE"
+            android:text="@string/level_three_text"
             android:id="@+id/three"
             android:layout_centerHorizontal="true"
-            android:onClick="levelThree"
-            />
+            android:onClick="levelThree" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -53,11 +50,10 @@
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL FOUR"
+            android:text="@string/level_four_text"
             android:id= "@+id/four"
             android:layout_centerHorizontal="true"
-            android:onClick="levelFour"
-            />
+            android:onClick="levelFour" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -69,11 +65,10 @@
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL FIVE"
+            android:text="@string/level_five_text"
             android:id="@+id/five"
             android:layout_centerHorizontal="true"
-            android:onClick="levelFive"
-            />
+            android:onClick="levelFive" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -85,11 +80,10 @@
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL TWO"
+            android:text="@string/level_two_text"
             android:id="@+id/two"
             android:onClick="levelTwo"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -101,12 +95,10 @@
             android:layout_alignTop="@+id/three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL ONE"
+            android:text="@string/level_one_text"
             android:id="@+id/one"
             android:onClick="levelOne"
-            android:layout_centerHorizontal="true"
-            />
-
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -119,7 +111,7 @@
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL SIX"
+            android:text="@string/level_six_text"
             android:id="@+id/six"
             android:onClick="levelSix"
             android:layout_centerHorizontal="true" />
@@ -135,13 +127,12 @@
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL SEVEN"
+            android:text="@string/level_seven_text"
             android:id="@+id/seven"
             android:onClick="levelSeven"
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@+id/two"
-            android:layout_alignRight="@+id/two"
-            />
+            android:layout_alignRight="@+id/two" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -153,13 +144,12 @@
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL EIGHT"
+            android:text="@string/level_eight_text"
             android:id="@+id/eight"
             android:onClick="levelEight"
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@+id/three"
-            android:layout_alignRight="@+id/three"
-            />
+            android:layout_alignRight="@+id/three" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -171,13 +161,12 @@
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL NINE"
+            android:text="@string/level_nine_text"
             android:id="@+id/nine"
             android:onClick="levelNine"
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@+id/four"
-            android:layout_alignRight="@+id/four"
-            />
+            android:layout_alignRight="@+id/four" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -189,13 +178,12 @@
             android:layout_below="@+id/one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LEVEL TEN"
+            android:text="@string/level_ten_text"
             android:id="@+id/ten"
             android:onClick="levelTen"
             android:layout_centerHorizontal="true"
             android:layout_alignLeft="@+id/five"
-            android:layout_alignRight="@+id/five"
-            />
+            android:layout_alignRight="@+id/five" />
 
         <Button
             android:background="@drawable/roundshapebtn"
@@ -205,105 +193,10 @@
             android:layout_marginLeft="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_alignParentBottom="true"
             android:layout_alignLeft="@+id/six"
             android:layout_alignRight="@+id/ten"
-            android:text="Custom Level"
-            android:onClick="customLevel"
-            />
-
-        <!--<Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignParentBottom="true"
-            android:layout_alignLeft="@+id/nine"
-            android:layout_alignRight="@+id/ten"
-            android:text="Generate Level"
-            android:onClick="generateLevel"
-            /> -->
-
+            android:text="@string/custom_level"
+            android:onClick="customLevel" />
     </RelativeLayout>
-
-
-    <!--<GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_one"
-            android:id="@+id/button"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:onClick="levelOne"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_two"
-            android:id="@+id/button2"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:onClick="levelTwo"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_three"
-            android:id="@+id/button3"
-            android:layout_row="0"
-            android:layout_column="2"
-            android:onClick="levelThree"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_four"
-            android:id="@+id/button4"
-            android:layout_row="0"
-            android:layout_column="3"
-            android:onClick="levelFour"
-            android:layout_gravity="right" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_five"
-            android:id="@+id/button5"
-            android:layout_row="0"
-            android:layout_column="4"
-            android:onClick="levelFive"
-            android:layout_gravity="right" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LEVEL SIX"
-            android:id="@+id/button6"
-            android:layout_row="1"
-            android:layout_column="0" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LEVEL SEVEN"
-            android:id="@+id/button7"
-            android:layout_row="1"
-            android:layout_column="1" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LEVEL EIGHT"
-            android:id="@+id/button8"
-            android:layout_row="1"
-            android:layout_column="2" />
-
-    </GridLayout> -->
 </RelativeLayout>

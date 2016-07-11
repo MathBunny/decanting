@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="About Decanting"
-            android:id="@+id/textView2"
+            android:id="@+id/title"
             android:layout_row="0"
             android:layout_column="0"
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/about_message"
-            android:id="@+id/textView3"
+            android:id="@+id/info"
             android:layout_row="1"
             android:layout_column="0" />
     </GridLayout>

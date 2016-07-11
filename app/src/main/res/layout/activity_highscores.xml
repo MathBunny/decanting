@@ -12,15 +12,10 @@
     <LinearLayout
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
-        android:orientation="vertical"
-        >
-
+        android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,7 +25,6 @@
             android:clickable="true"
             android:id="@+id/restart"
             android:layout_alignParentRight="true" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,13 +33,7 @@
             android:text="@string/highscores"
             android:id="@+id/textView4"
             android:layout_centerInParent="true" />
-
-
-
-
-
     </RelativeLayout>
-
         <ScrollView android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TableLayout
@@ -54,62 +42,57 @@
                 android:layout_height="match_parent"
                 android:layout_row="0"
                 android:layout_column="0">
-
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
                     <TextView
                         android:textColor="#0d47a1"
-                        android:text="Level"
+                        android:text="@string/level"
                         android:paddingRight="5dp"
                         android:layout_width="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="wrap_content"
                         android:layout_column="1" />
-
                     <TextView
                         android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="Player"
+                        android:text="@string/player"
                         android:minWidth="100px"
                         android:layout_width="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="wrap_content"
                         android:layout_column="2" />
-
                     <TextView
                         android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="Moves"
+                        android:text="@string/moves"
                         android:minWidth="100px"
                         android:layout_width="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="wrap_content"
                         android:layout_column="3" />
-
                     <TextView
                         android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="Date"
+                        android:text="@string/date"
                         android:minWidth="100px"
                         android:layout_width="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="wrap_content"
                         android:layout_column="4" />
-
                     <TextView
                         android:textColor="#0d47a1"
                         android:paddingLeft="5dp"
-                        android:text="Performance Rating"
+                        android:text="@string/performance_rating"
                         android:layout_width="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_height="wrap_content"
                         android:layout_column="5" />
                 </TableRow>
-                <!--
+                <!-- THIS IS A PRE-POPULATED EXAMPLE OF THE SCREEN
                 <TableRow
                     android:gravity="center_vertical">
 
@@ -217,14 +200,7 @@
                         android:layout_column="5" />
                 </TableRow>
                -->
-
-
             </TableLayout>
         </ScrollView>
-
-
-
     </LinearLayout>
-
-
 </RelativeLayout>

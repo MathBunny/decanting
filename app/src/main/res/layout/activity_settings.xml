@@ -12,26 +12,22 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        >
-
-
+        android:layout_gravity="bottom">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Current Player Name:"
+            android:text="@string/current_player_name"
             android:id="@+id/textView5"
             android:layout_row="0"
-            android:layout_column="0"
-            />
+            android:layout_column="0" />
 
         <EditText
             android:paddingLeft="8dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Anonymous"
+            android:text="@string/anonymous"
             android:id="@+id/playerName"
             android:layout_row="0"
             android:layout_column="1"
@@ -47,8 +43,7 @@
             android:paddingLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Adjust Player Name"
+            android:text="@string/adjust_player_name"
             android:onClick="adjustPlayerName"
             android:id="@+id/changeName"
             android:layout_row="0"
@@ -58,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Level Generator Difficulty:"
+            android:text="@string/level_generator_difficulty"
             android:id="@+id/generatorDifficultyText"
             android:onClick="generatorDifficulty"
             android:layout_row="1"
@@ -68,7 +63,7 @@
             android:paddingLeft="8dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="5"
+            android:text="@string/_5"
             android:id="@+id/generatorDifficulty"
             android:layout_row="1"
             android:layout_column="1"
@@ -85,23 +80,11 @@
             android:paddingLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Adjust Difficulty"
+            android:text="@string/adjust_difficulty"
             android:onClick="adjustDifficulty"
             android:id="@+id/button"
             android:layout_row="1"
             android:layout_column="2"
             android:layout_gravity="fill_horizontal" />
-
     </GridLayout>
-
-    <!--<Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Clear Highscores"
-        android:id="@+id/button2"
-        android:onClick="clearDB"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" /> -->
-
 </RelativeLayout>

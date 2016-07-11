@@ -1,11 +1,9 @@
 package ca.horatiu.decanting;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -13,8 +11,6 @@ import android.view.View;
  * @author Horatiu Lazu
  */
 public class MainActivity extends AppCompatActivity {
-    Intent svc;
-    static Highscores highscores = new Highscores();
 
     /**
      * This method sets up the content view.
@@ -63,15 +59,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(levelSelection); //open level selection
     }
 
+    /**
+     * This method is called whenever the activity is stopped.
+     */
     @Override
-    public void onStop(){ //better
+    public void onStop(){
         super.onStop();
-        //stopService(svc);
     }
 
+    /**
+     * This method is called whenever the activity is closed.
+     */
     @Override
-    public void onDestroy(){ //better
+    public void onDestroy(){
         super.onDestroy();
-        //stopService(svc);
     }
 }

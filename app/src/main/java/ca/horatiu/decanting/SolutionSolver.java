@@ -38,7 +38,6 @@ public class SolutionSolver {
 
     /** This method solves the puzzle using a caching top-down BFS algorithm */
     private int solve(){
-        //ok now time for magic :-)
         dp.add(generateCache(arr));
         ArrayDeque<State> Q = new ArrayDeque<State>();
         Q.addLast(new State(arr, "Initial", "Initial"));

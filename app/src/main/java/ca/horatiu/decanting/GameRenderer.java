@@ -2,47 +2,71 @@ package ca.horatiu.decanting;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.Toast;
 import java.util.*;
 
 /**
+ * This class handles all graphic related tasks within the main game, drawn in a canvas.
  * Created by Horatiu on 27/06/2016.
  */
 public class GameRenderer extends View {
+    /** width int This is the width of the view. */
     private int width;
+    /** height int This is the height of the view. */
     private int height;
+    /** numJugs int This is the number of jugs. */
     private int numJugs;
+    /** drawPaint Paint This is the paint used for draw commands. */
     private Paint drawPaint;
+    /** canvas Canvas This is the canvas reference */
     private Canvas canvas;
+    /** GAP int This is the gap between two jugs. */
     final int GAP = 20;
+    /** TOP_PADDING int This is the padding from the top of the screen. */
     final int TOP_PADDING = 150;
+    /** h Handler This is used for threading (animations). */
     private Handler h;
+    /** FRAME_RATE int This is the frame rate. */
     private final int FRAME_RATE = 60;
+    /** SPEED int This is the speed of the jugs filling/emptying. */
     private final int SPEED = 5;
+    /** scenario Scenario This is the scenario / level. */
     private  Scenario scenario;
+    /** maxCapacity int This is the largest capacity of one of the jugs. */
     private int maxCapacity;
+    /** capacity int [] These are the capacities of the jugs. */
     private int [] capacity;
+    /** capacityDrawn int [] These are the drawn capacities (so far) of the jugs. */
     private int [] capacityDrawn;
+    /** highlighted boolean [] These are the jugs which are highlighted. */
     private boolean [] highlighted;
+    /** hasHighlighted boolean This indicates if anything is highlighted. */
     private boolean hasHighlighted = false;
+    /** moves int This is the number of moves. */
     private int moves = 0;
+    /** target int This is the target capacity. */
     private int target;
+    /** game Game This is the game reference. */
     private Game game;
+    /** hasWon boolean This indicates if a player has won already. */
     private boolean hasWon = false;
-
+    /** undo Stack<> This holds the game moves so moves can be easily removed. */
     Stack<Action> undo = new Stack<>();
 
 
+    /**
+     * This is the class constructor for the game renderer.
+     * @param context Context This is a context.
+     * @param numJugs int This is the number of jugs present.
+     * @param scenario Scenario This is the scenario with the jug preferences.
+     */
     public GameRenderer(Context context, int numJugs, Scenario scenario) { //numJugs is useless!
         super(context);
         this.game = (Game)context;
@@ -65,9 +89,11 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method is called when something is tapped.
+     * @param x int This is the x coordinate.
+     */
     public void tapped(int x){
         int jug = (x/(getWidth()/(numJugs+2)))-1; //(jugs+2)
-        Log.d("Tap", "Tapped! Jug: " + jug + " ");
 
         if (hasHighlighted){
             if (jug >= 0 && jug < numJugs){
@@ -75,11 +101,6 @@ public class GameRenderer extends View {
                     for(int y = 0; y < scenario.jugs.length; y++){
                         if (jug != y && highlighted[y]){
                             undo.push(new Action(y, scenario.jugs[y].getVolume(), jug, scenario.jugs[jug].getVolume()));
-                            /*lastAction = 2;
-                            lastIndex = y;
-                            lastCapacity = scenario.jugs[y].getVolume();
-                            lastIndex2 = jug;
-                            lastCapacity2 = scenario.jugs[jug].getVolume(); //store*/
                             scenario.jugs[y].pour(scenario.jugs[jug]);
                             highlighted[y] = false;
                             moves++;
@@ -99,6 +120,7 @@ public class GameRenderer extends View {
         invalidate();
     }
 
+    /** This method draws the text on the screen (undo button, help and the level requirements */
     public void drawText(){
         drawPaint.setColor(Color.parseColor("#2196f3"));
         float pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 32, getResources().getDisplayMetrics());
@@ -131,6 +153,7 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method draws the highlights for selected buckets. */
     public void drawHighlights(){
         int heightStep = height/4;
         int widthStep = (width/(numJugs+2));
@@ -149,6 +172,7 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method undos a move by popping the stack. */
     public void undo(){
         if (undo.isEmpty())
             return;
@@ -160,6 +184,7 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method determines if any player already won the game. */
     public void verifyIfWon(){
         for(int x = 0; x < scenario.jugs.length; x++){
             if (scenario.jugs[x].getVolume() == target){
@@ -170,15 +195,18 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method handles gestures such as swiping up or down on the jugs.
+     * @param x int This is the x variable of the swipe.
+     * @param y int This is the y variable of the swipe.
+     * @param dx int This indicates the direction (x-wise) of the swipe.
+     * @param dy int This indicates the direction (y-wise) of the swipe.
+     */
     public void gesture(int x, int y, int dx, int dy){
         int jug = (x/(getWidth()/(numJugs+2)))-1;
         if (jug >= 0 && jug < numJugs && y > getHeight()/4){
             if (dy > 0){ //swipe up!
                 if (scenario.jugs[jug].getVolume() != scenario.jugs[jug].getMaxCapacity()) {
                     undo.push(new Action(jug, scenario.jugs[jug].getVolume()));
-                    /*lastAction = 1;
-                    lastIndex = jug;
-                    lastCapacity = scenario.jugs[jug].getVolume();*/
                     scenario.jugs[jug].setVolume(scenario.jugs[jug].getMaxCapacity()); //MAX! update the jug too?
                     moves++;
                 }
@@ -186,9 +214,6 @@ public class GameRenderer extends View {
             else{
                 if (scenario.jugs[jug].getVolume() != 0) {
                     undo.push(new Action(jug, scenario.jugs[jug].getVolume()));
-                    /*lastAction = 1;
-                    lastIndex = jug;
-                    lastCapacity = scenario.jugs[jug].getVolume();*/
                     scenario.jugs[jug].setVolume(0);
                     moves++;
                 }
@@ -197,6 +222,7 @@ public class GameRenderer extends View {
         invalidate();
     }
 
+    /** r Runnable This variable is used for the animations. */
     private Runnable r = new Runnable() {
         @Override
         public void run() {
@@ -204,6 +230,9 @@ public class GameRenderer extends View {
         }
     };
 
+    /** This method draws to the canvas and calls multiple methods.
+     * @param canvas Canvas This is the canvas reference.
+     */
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
@@ -223,11 +252,13 @@ public class GameRenderer extends View {
         verifyIfWon();
     }
 
+    /** This method updates the capacity of the jugs. */
     public void updateCapacities(){
         for(int x = 0; x < scenario.jugs.length; x++)
             capacity[x] = (int) (((double)scenario.jugs[x].getVolume()/maxCapacity)*((getHeight()*0.5)));
     }
 
+    /** This method draws the bottom line of the jugs. */
     public void drawBottom(){
         int widthStep = (width/(numJugs+2));
 
@@ -235,6 +266,7 @@ public class GameRenderer extends View {
         canvas.drawLine(widthStep-5, height-5, widthStep*(numJugs+1)-GAP+5, height-5, drawPaint); //+-2
     }
 
+    /** This method draws scales on the jugs */
     public void drawScales(){
         int height = getHeight()/2; //this is the height of the scale
         int widthStep = (width/(numJugs+2)); //sduplicate from method below!
@@ -264,6 +296,7 @@ public class GameRenderer extends View {
         }
     }
 
+    /** This method draws a cap on the top of the jugs at the limit. */
     public void drawCap(){
         drawPaint.setStrokeWidth(1);
         drawPaint.setColor(Color.parseColor("#9e9e9e"));
@@ -277,6 +310,9 @@ public class GameRenderer extends View {
         drawPaint.setStrokeWidth(10);
     }
 
+    /** This method draws the background with all the Jugs.
+     * @param canvas This is the canvas reference.
+     */
     public void drawBackground(Canvas canvas){
         int widthStep = (width/(numJugs+2));
         int heightStep = height/4;
@@ -319,6 +355,9 @@ public class GameRenderer extends View {
 
     }
 
+    /**
+     * This method gets the dimensions of the view before canvas object is built.
+     */
     private void setOnMeasureCallback() {
         ViewTreeObserver vto = getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -331,6 +370,10 @@ public class GameRenderer extends View {
         });
     }
 
+    /**
+     * This method removes the global listener.
+     * @param listener
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void removeOnGlobalLayoutListener(ViewTreeObserver.OnGlobalLayoutListener listener) {
         if (Build.VERSION.SDK_INT < 16) {
